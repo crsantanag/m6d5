@@ -1,24 +1,85 @@
-# README
+![Banner](banner.jpg)  
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Módulo 6 - Desafío 5
+# Carlos Santana
 
-Things you may want to cover:
+Ruby on Rails - postgresql
 
-* Ruby version
+## Descripción
 
-* System dependencies
+Esta aplicación permite, para una empresa, que se creen ofertas de cargos internos de manera que los trabajadores puedan postular a ellos, y así mejorar sus rentas y ascender a nuevos cargos dentro de la organización.
 
-* Configuration
+OBS:  
+   1. La aplicación permite determinadas vistas según el perfil del usuario (perfil normal, perfil owner y perfil admin).  
+   2. El registro de las cuentas de usuario sólo la puede realizar el owner (o admin). En este caso los campos curriculum y foto quedan sin datos.  
+   3. Cada vez que el usuario ingrese a la aplicación con su email y password, y mientras no ingrese su curriculum y foto, se le mostrará un mensaje solicitando estos datos. Para hacer esta acción, se debe hacer click sobre su nombre en la barra de navegación y lo lleva a la vista de modificación.  
+   4. Sólo el usuario owner (o admin) puede crear ofertas de cargos, controlando la aplicación -en el navbar- las opciones autorizadas. Al crear una oferta se piden, entre otros campos:  
+   - active: permite dejar activa o inactiva una oferta de trabajo. Esto es útil para "bajar" momentáneamente una oferta de cargo  
+   - fecha límmite: permite indicar la fecha límite para postular a la oferta de cargo.     
+   5. Para postular a una oferta de cargo, el usuario deberá -previamente- completar su currículo y subir su foto.  
+   6. Al postular, es obligación indicar el motivo de dicha postulación. Una vez realizada esta acción, la postulación quedará con un indicador color rojo que indica que aún no es vista por el owner (o admin). Cuando la postulación sea vista por el owner, el indicador pasará a verde. Lo mismo ocurre para la vista del owner (o admin).  
+   7. En la vista del usuario, éste podrá ver las ofertas de cargos y el estado de sus postulaciones, pudiendo editarlas o eliminarlas.  
+   8. En la vista del owner (o admin), éste podrá crear ofertas de cargos, ver las ofertas de cargos y editarlas o eliminarlas, y también podrá ver las postulaciones de los usuarios a las diferentes ofertas de cargos. También podrá crear usuarios (ver punto 2).  
+   9. Cuando una visita ingresa a la aplicación, sólo tendrá acceso a una página de inicio.  
+  
+## Pantalla de inicio  
+  
+Vista para todos los usuarios al entrar a la aplicación. Está en /root y permite el inicio de sesión, siendo la única opción en el navbar. Si no tiene una cuenta creada, deberá solicitarla al owner (o admin).  
+  
+![Usuario](screen1.jpg)  
+  
+## Usuario owner (o admin) 
+  
+La vista de inicio, una vez iniciada sesión, para el usuario owner (o admin) tiene la opción de crear ofertas de cargos y administrarlas acorde a lo indicado en la descripción.  
+  
+![Author](screen2.jpg)  
 
-* Database creation
+## Usuario normal (trabajdor)  
+  
+![Author](screen3.jpg) 
+  
+## Modelo de datos  
+  
+![Modelo](model.jpg)
+  
+## Inicio
+  
+Estas instrucciones te ayudarán a obtener una copia del proyecto y a ejecutarlo en tu máquina local para fines de desarrollo y prueba.
 
-* Database initialization
+### Pre-requisitos
+  
+Este proyecto fue desarrollado con Ruby versión 3.3.5, Rails - versión 7.2.1.1 y PostgreSQL - versión 16.4
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Instalación
+  
+Sigue estos pasos para ejecutar el proyecto localmente:
+  
+1. Clona este repositorio en tu máquina local.  
+git clone https://github.com/crsantanag/m6d4.git  
+  
+2. Navega hasta el directorio del proyecto.  
+cd m6d3  
+  
+3. Instala las dependencias y modifica archivo database.yml  
+Las gemas que se deben instalar son:   
+   - devise (autenticación)
+   - figaro (configuración de variables ENV)  
+   - activestorage (almacenamiento de imágenes). Instalar: rails active_storage:install  
+   - aws-sdk-s3 (almacenamiento de imágenes en el servicio de Amazon S3)
+  
+4. Crea la base de datos, realiza la migración y carga los datos de prueba (ejecutar archivo seed.rb)  
+    - rails db:create  
+    - rails db:migrate  
+    - rails db:seed ( seeds.rb tiene la creación del usuario karina@karipic.cl con el rol de author- revisar antes de ejecutar el comando)  
+  
+## Ejecutando las pruebas
+Levanta el servidor y prueba la aplición.  
+root está en /  
+  
+Este proyecto no cuenta con pruebas automatizadas. Puedes probar manualmente todas las funcionalidades.  
+  
+## Licencia  
+  
+Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE.md](LICENSE.md) para obtener más detalles.  
+  
+⌨ ️Carlos Santana (https://github.com/crsantanag)
