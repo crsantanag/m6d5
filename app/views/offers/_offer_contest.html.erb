@@ -1,0 +1,18 @@
+<div>
+
+  <tr class="table-light">
+    <td class="text-center" scope="col">
+        <% if offer.active? %> 
+          <span class="status-indicator bg-success"></span>
+        <% else %>
+          <span class="status-indicator bg-danger"></span>
+        <% end %>
+    </td>
+    <td class="text-start"> <%= offer.title %> </td>
+    <td class="text-start"> <%= offer.description %> </td>
+    <td class="text-start"> <%= offer.limit.strftime("%d-%m-%Y")  %> </td>
+  </tr>
+  <br>
+
+  <br>
+</div>

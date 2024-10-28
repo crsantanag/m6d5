@@ -1,0 +1,15 @@
+<div id="<%= dom_id postulation %>">
+
+  <tr class="table-light">
+    <td class="text-center" scope="col">
+      <% if postulation.saw? %> 
+          <span class="status-indicator bg-success"></span>
+      <% else %>
+          <span class="status-indicator bg-danger"></span>
+      <% end %>
+    </td>
+    <td class="text-start"> <%= postulation.offer.title %> </td>
+    <td><div class="d-flex justify-content-center"> <%= link_to "Ver", postulation, class: "btn btn-primary" %> </div></td>
+  </tr>
+
+</div>

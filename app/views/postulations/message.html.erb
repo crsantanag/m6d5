@@ -1,0 +1,46 @@
+
+<% if @postulations.count > 0 %>
+
+  <h2>Mensajes de postulantes</h2>
+
+  <div id="postulations">
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped bg-dark text-light">
+
+        <thead>
+            <tr class="table-primary">
+                <th class="col-1 text-center" scope="col">¿Visto?</th>
+                <th class="col-4" scope="col">Nombre postulante</th>
+                <th class="col-4" scope="col">Cargo al que postula</th>
+                <th class="col-2 text-center" scope="col">MENSAJE</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        <% @postulations.each do |postulation| %>
+            
+            <tr class="table-light">
+                <td class="text-center" scope="col">
+                    <% if postulation.saw %> 
+                        <span class="status-indicator bg-success"></span>
+                    <% else %>
+                        <span class="status-indicator bg-danger"></span>
+                    <% end %>
+                </td>
+                <td class="text-start"> <%= postulation.user.name %> </td>
+                <td class="text-start"> <%= postulation.offer.title %> </td>
+                <td><div class="d-flex justify-content-center"> <%= link_to "Ver", postulation, class: "btn btn-primary" %> </div></td>
+            </tr>
+
+            <% end %>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+
+<% else %>
+
+  <h2>No hay mensajes</h2>
+
+<% end %>

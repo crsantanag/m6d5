@@ -1,0 +1,95 @@
+
+    <nav class="px-2 px-md-10 mx-0 navbar navbar-expand-lg navbar-light bg-primary bg-body-tertiary fixed-top border-top border-bottom border-2 border-info " style="height: 90px">
+        <div class="container-fluid">
+
+            <strong> <%= link_to "Esteban's page",
+                            root_path,
+                            class: "navbar-brand",
+                            data: { bs_toggle: "tooltip", bs_placement: "bottom" },
+                            title: "Ir a la página de inicio" %> </strong>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <% if user_signed_in? %>
+                    <li class="nav-item ">
+                        <%= link_to "Ver ofertas",
+                                offers_path,
+                                class:"nav-link btn btn-light fs-5 me-3 border border-2 rounded-2 border-secondary-subtle",
+                                data: { bs_toggle: "tooltip", bs_placement: "bottom" },
+                                title: "Ir a ver ofertas de trabajo" %>
+                    </li>
+                    <% if current_user.normal? %>
+                        <li class="nav-item">
+                            <%= link_to "Ver mis postulaciones ".html_safe + "<span class='top-0 badge rounded-pill bg-danger'> + #{@postulations.count} </span>".html_safe,
+                                postulations_path,
+                                class:"nav-link btn btn-light fs-5 me-3 border border-2 rounded-2 border-secondary-subtle",
+                                data: { bs_toggle: "tooltip", bs_placement: "bottom" },
+                                title: "Ir a ver mis postulaciones" %>
+                        </li>
+
+                    <% end %>
+                    <% if ( current_user.owner? ||  current_user.admin?) %> 
+                        <li class="nav-item">
+                            <%= link_to "Ver postulaciones",
+                                contest_offers_path,
+                                class:"nav-link btn btn-light fs-5 me-3 border border-2 rounded-2 border-secondary-subtle",
+                                data: { bs_toggle: "tooltip", bs_placement: "bottom" },
+                                title: "Ver todas las postulaciones" %>
+                        </li>
+                        <li class="nav-item">
+                            <%= link_to "Crear oferta cargo",
+                                new_offer_path,
+                                class:"nav-link btn btn-light fs-5 me-3 border border-2 rounded-2 border-secondary-subtle",
+                                data: { bs_toggle: "tooltip", bs_placement: "bottom" },
+                                title: "Crear una oferta de cargo" %>
+                        </li>
+                    <% end %>
+                <% end %>
+                </ul> 
+
+                <div class="d-flex mx-2 justify-content-end align-items-center">
+                    <% if user_signed_in? %>
+                        <% if current_user.picture.attached? %>
+                            <div class="d-flex justify-content-center">
+                            <%= image_tag current_user.picture, class: "img-fluid rounded-circle mx-2", style: "max-width: 70px; max-height: 70px; width: 100%; height: auto;" %>
+                            </div>
+                        <% end %>
+
+                        <% if current_user.name.present? %>
+                            <span class="text-dark fs-4"> Bienvenido(a) </span> <%= link_to current_user.name, edit_user_registration_path(@user),  class: "ms-2 me-2 btn btn-primary" %>
+                        <% else %>
+                            <span class="text-dark fs-4 mx-2"> Bienvenido(a) <%= link_to current_user.email, edit_user_registration_path(@user),  class: "ms-2 me-2 btn btn-primary" %> </span> 
+                        <% end %>
+
+
+                        <% if (current_user.owner? || current_user.admin?) %> 
+
+                            <%= link_to message_postulations_path, class: "d-flex align-items-center justify-content-center border border-2 border-danger rounded text-decoration-none me-2", style: "cursor: pointer;" do %>
+                                <i class="mt-3 mb-3 me-2 fa-regular fa-bell fa-2xl text-danger"></i>
+                                <span class="me-2 badge rounded-pill bg-danger">+ <%= @postulations_unseen.count %></span>
+                            <% end %>
+
+                        
+                            <%= link_to "Registrar", new_user_registration_path, class: "btn btn-secondary me-2" %>
+
+                        <% end %>
+
+                        <%= button_to "Cerrar sesión", destroy_user_session_path, class: "btn btn-secondary", method: :delete %>
+                    <% else %>
+                        <div>
+                            <%= link_to "Iniciar sesión", new_user_session_path,   class: "btn btn-secondary" %>
+                        </div>
+                    <% end %>
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+

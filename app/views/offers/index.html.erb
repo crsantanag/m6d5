@@ -1,0 +1,35 @@
+<% content_for :title, "Offers" %>
+
+<% if notice.present? %>
+  <p class="my-2">
+    <span class="d-block notice" style="color: red"> <strong>Index / offer: <%= notice %> </strong> </span>
+  </p>
+<% end %> 
+
+<h2>Ofertas de cargos internos</h2>
+
+<div id="offers">
+    <div class="table-responsive">
+    <table class="table table-bordered table-striped bg-dark text-light">
+
+      <thead>
+        <tr class="table-primary">
+          <% if current_user.owner? || current_user.admin? %>
+            <th class="col-1 text-center" scope="col">¿Activo?</th>
+          <% end %>
+          <th class="col-3" scope="col">Título</th>
+          <th class="col-7" scope="col">Descripción</th>
+          <th class="col-1 text-center"  scope="col">Fecha límite</th>
+          <th class="col-1 text-center" scope="col">ACCIÓN</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @offers.each do |offer| %>
+          <%= render offer %>
+        <% end %>
+      </tbody>
+
+    </table>
+</div>
+

@@ -1,0 +1,18 @@
+<% content_for :title, "Editing offer" %>
+
+<% if notice.present? %>
+  <p class="my-2">
+    <span class="d-block notice" style="color: red"> <strong>Edit / offer: <%= notice %> </strong> </span>
+  </p>
+<% end %>
+
+<h2>Editando oferta de cargo</h2>
+
+<%= render "form", offer: @offer %>
+
+<br>
+<div>
+  <%= link_to "Show this offer", @offer %> |
+  <%= link_to "Back to offers", offers_path %>
+</div>
+

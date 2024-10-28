@@ -1,0 +1,33 @@
+<%= form_with(model: postulation) do |form| %>
+
+  <% if postulation.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(postulation.errors.count, "Error!") %> No es posible actualizar postulación debido a:</h2>
+      <ul>
+        <% postulation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-2 w-100 ">
+    <div class="field my-2 ">
+      <%= form.label :message, "Mensaje para postulación" %>
+      <br>
+      <%= form.text_area :message, autofocus: true, required: true, class: "ps-2 w-100 border border-2 rounded-2 border-secondary-subtle", rows: 3 %>
+    </div>
+  </div>
+
+  <div class = "actions">
+    <% if controller_name == "postulations" %>
+      <% if action_name == "new" %>
+        <%= form.submit "Postular ** Nunca por aquí **", class: "btn btn-primary my-0", style: "width:100px" %>
+      <% elsif action_name == "edit" %>
+        <%= form.submit "Actualizar", class: "btn btn-primary my-0", style: "width:100px" %>
+      <% end %>
+    <% end %>
+  </div>
+
+<% end %>
+

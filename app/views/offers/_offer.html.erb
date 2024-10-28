@@ -1,0 +1,20 @@
+<div id="<%= dom_id offer %>">
+
+  <tr class="table-light">
+    <% if current_user.owner? || current_user.admin? %>
+        <td class="text-center" scope="col">
+          <% if offer.active? %> 
+            <span class="status-indicator bg-success"></span>
+          <% else %>
+            <span class="status-indicator bg-danger"></span>
+          <% end %>
+        </td>
+    <% end %>
+    
+    <td class="text-start"> <%= offer.title %> </td>
+    <td class="text-start"> <%= offer.description %> </td>
+    <td class="text-start"> <%= offer.limit.strftime("%d-%m-%Y")  %> </td>
+    <td><div class="d-flex justify-content-center"> <%= link_to "Ver", offer, class: "btn btn-primary" %> </div></td>
+  </tr>
+
+</div>

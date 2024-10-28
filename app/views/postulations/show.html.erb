@@ -1,0 +1,78 @@
+<% content_for :title, "Postulations" %>
+
+<div class="d-flex justify-content-left text-left my-0 p-0">
+  <div class="w-100 w-sm-75">   
+
+    <% if notice.present? %>
+      <p class="my-2">
+        <span class="d-block notice" style="color: red"> <strong>Show / postulations: <%= notice %> </strong> </span>
+      </p>
+    <% end %> 
+
+    <h2>Postulación</h2>
+    <h5 class="mb-4">Realizada el <%= @offer.created_at.strftime("%d-%m-%Y %H:%M") %></h5>
+
+    <div class="text-left w-100 w-sm-75 border border-2 rounded-2 border-secondary-subtle">
+
+      <div class="d-flex align-items-start ms-2 mb-2">
+        <div class="ms-2 mt-1"> 
+            <% if @postulation.user.picture.attached? %>
+                <%= image_tag @postulation.user.picture, class: "img-fluid rounded-circle", style: "max-width: 50px; max-height: 50px; width: 100%; height: auto;" if @postulation.user.picture.attached? %>
+            <% end %>
+        </div>      
+        <div class="flex-grow-1 ms-2 mb-2"> 
+          <strong>Postulante</strong>
+            <div>
+              <%= @postulation.user.name %>
+            </div>
+        </div>
+      </div>
+
+      <div class="ps-2 pb-2">
+        <strong>Curriculum Vitae</strong>
+        <div>
+          <%= @postulation.user.curriculum %>
+        </div>
+      </div>
+
+      <div class="ps-2 pb-2">
+        <strong>Cargo postulado</strong>
+        <div>
+          <%= @offer.title %>
+        </div>
+      </div>
+
+      <div class="ps-2 pb-2">
+        <strong>Descripción cargo</strong>
+        <div>
+          <%= @offer.description %>
+        </div>
+      </div>
+
+      <div class="ps-2 pb-2">
+        <strong> Fecha límite postulación</strong>
+        <div>
+          <%= @offer.limit.strftime("%d-%m-%Y")  %>
+        </div>
+      </div>
+
+      <div class="ps-2 pb-2">
+        <strong>Mensaje para postular</strong>
+        <div>
+          <%= @postulation.message %>
+        </div>
+      </div>
+  
+    </div>
+
+    <div class="d-flex pt-3 ms-1 mx-md-2">
+      <% if (current_user.owner? || current_user.admin?) %> 
+        <%= link_to   "Regresar", message_postulations_path, class: "py-2 me-2 btn btn-light border" %>
+      <% else %>
+        <%= link_to   "Regresar", postulations_path, class: "py-2 me-2 btn btn-light border" %>
+      <% end %>
+        <%= button_to "Eliminar", @postulation, method: :delete,  data: { confirm: "¿Estás seguro?" }, class: "mx-2 btn btn-warning", style:"width: 120px" %>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,41 @@
+
+<% content_for :title, "Postulations" %>
+
+<% if notice.present? %>
+  <p class="my-2">
+    <span class="d-block notice" style="color: red"> <strong>Index / postulations: <%= notice %> </strong> </span>
+  </p>
+<% end %> 
+
+<% if @postulations.count > 0 %>
+
+  <h2>Mis postulaciones</h2>
+
+  <div id="postulations">
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped bg-dark text-light">
+
+        <thead>
+          <tr class="table-primary">
+            <th class="col-1 text-center" scope="col">¿Visto?</th>
+            <th class="col-8" scope="col">Postulación</th>
+            <th class="col-2 text-center" scope="col">ACCIÓN</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @postulations.each do |postulation| %>
+            <%= render postulation %>
+              <% end %>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+
+<% else %>
+
+  <h2>No hay postulaciones</h2>
+
+<% end %>
+

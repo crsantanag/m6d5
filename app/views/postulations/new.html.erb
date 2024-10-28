@@ -1,0 +1,11 @@
+<% content_for :title, "New postulation" %>
+
+<h1>New postulation</h1>
+
+<%= render "form", postulation: @postulation %>
+
+<br>
+
+<div>
+  <%= link_to "Back to postulations", postulations_path %>
+</div>

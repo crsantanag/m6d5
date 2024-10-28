@@ -1,0 +1,86 @@
+<% content_for :title, "Offers" %>
+
+<div class="d-flex justify-content-left text-left my-0 p-0">
+  <div class="w-100 w-sm-75">   
+
+    <% if notice.present? %>
+      <p class="my-2">
+        <span class="d-block notice" style="color: red"> <strong>Show / offers: <%= notice %> </strong> </span>
+      </p>
+    <% end %>
+
+    <% if @postulation.errors.any? %>
+      <div id="error_explanation" class="mx-2"  style="color: red">
+        <h2><%= @postulation.errors.count %> error(es). No es posible realizar postulación</h2>
+        <ul>
+          <% @postulation.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <h2>Oferta de cargo</h2>
+    <h5>Creada el <%= @offer.created_at.strftime("%d-%m-%Y %H:%M") %></h5>
+  
+    <div class="w-100 w-sm-50 text-left border border-2 rounded-2 border-secondary-subtle">
+                                        
+      <div class="row pt-2 mx-1 mx-md-2">
+        <strong>
+          Título
+        </strong>
+        <div>
+          <%= @offer.title %>
+        </div>
+      </div>
+
+      <div class="row pt-2 mx-1 mx-md-2">
+        <strong>
+          Descripción
+        </strong>
+        <div>
+          <%= @offer.description %>
+        </div>
+      </div>
+
+      <div class="row pt-2 mx-1 mx-md-2">
+        <strong>
+          ¿Postulación activa?
+        </strong>
+        <div>
+          <% if @offer.active? %>
+            SI
+          <% else %>
+            NO
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row py-2 mx-1 mx-md-2">
+        <strong>
+          Fecha límite
+        </strong>
+        <div>
+          <%= @offer.limit.strftime("%d-%m-%Y")  %>
+        </div>
+      </div>
+      <br>
+
+    </div>
+
+      <% if ( current_user.owner? ||  current_user.admin?) %>
+
+        <div class="d-flex pt-3 ms-1 mx-md-2">
+            <%= link_to   "Regresar", offers_path, class: "py-2 me-2 btn btn-light border" %>
+            <%= link_to   "Editar",   edit_offer_path(@offer),  class: "mx-2 btn btn-primary" %>
+            <%= button_to "Eliminar", @offer, method: :delete,  data: { confirm: "¿Estás seguro?" }, class: "mx-2 btn btn-warning", style:"width: 120px" %>
+        </div>
+      
+      <% else %>
+        <br>
+        <%= render "postulations/form_show", postulation: @postulation, offer: @offer %> 
+        <br>
+
+      <% end %>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+
+development:
+  <<: *default
+  database: m6d5
+  username: <%= ENV["BD_USERNAME"] %>
+  password: <%= ENV["BD_PASSWORD"] %>
+  host: localhost
+  port: 5432 
+
+test:
+  <<: *default
+  database: m6d5_test
+  username: <%= ENV["BD_USERNAME"] %>
+  password: <%= ENV["BD_PASSWORD"] %>
+  host: localhost
+  port: 5432 
+
+production:
+  <<: *default
+  database: m6d5_production
+  username: m6d5
+  password: <%= ENV["M6D5_DATABASE_PASSWORD"] %>

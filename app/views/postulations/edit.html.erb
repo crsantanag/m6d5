@@ -1,0 +1,17 @@
+<% content_for :title, "Editing postulation" %>
+
+<% if notice.present? %>
+  <p class="my-2">
+    <span class="d-block notice" style="color: red"> <strong>Edit / postulations:  <%= notice %> </strong> </span>
+  </p>
+<% end %>
+
+<h2>Editando postulación</h2>
+
+<%= render "form", postulation: @postulation %>
+
+<br>
+<div>
+  <%= link_to "Show this postulation", @postulation %> |
+  <%= link_to "Back to postulations", postulations_path %>
+</div>

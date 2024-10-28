@@ -1,0 +1,64 @@
+<h2>Registrar</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name),  html: { multipart: true }) do |f| %>
+
+  <% if resource.errors.any? %>
+    <div id="error_explanation" data-turbo-cache="false" style="color: red">
+      <div id="error_explanation">
+        <h2><%= resource.errors.count %> Error(es)! No es posible crear usuario debido a:</h2>
+        <ul>
+          <% resource.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "ps-2 col-6 border border-2 border-secondary-subtle rounded", style:"height: 35px"  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, "Password" %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> caracteres mínimo)</em>
+    <% end %><br>
+    <%= f.password_field :password, autocomplete: "new-password", class: "ps-2 col-2 border border-2 border-secondary-subtle rounded", style:"height: 35px"  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirmar password" %><br>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "ps-2 col-2 border border-2 border-secondary-subtle rounded", style:"height: 35px" %>
+  </div>
+  <br>
+
+  <div class="my-2">
+    <%= f.label :name, "Nombre", class: "col-6" %><br>
+    <%= f.text_field :name, required: true, class: "ps-2 col-6 border border-2 border-secondary-subtle rounded", style:"height: 35px" %>
+  </div>
+
+  <div class="my-2">
+    <%= f.label :phone, "Teléfono", class: "col-6" %><br>
+    <%= f.text_field :phone, required: true, class: "ps-2 col-2 border border-2 border-secondary-subtle rounded", style:"height: 35px" %>
+  </div>
+
+  <div class="field my-2">
+    <%= f.label :curriculum, "Curriculum" %><br />
+    <%= f.text_area :curriculum, autocomplete: "curriculum", class: "ps-2 col-12 col-sm-6 border border-2 rounded-2 border-secondary-subtle", rows: 3 %>
+  </div>
+
+  <div class="my-2 col-12 col-md-8">
+    <%= f.label :picture, "Formato relación 1:1 - Tamaño máx 1 Mb", class: "col-12" %>
+    <br>
+    <div class="my-2 col-12 col-md-8">
+    <%= f.file_field :picture, class: "ps-2 py-1 col-8 border border-2 border-secondary-subtle rounded", style:"height: 40px" %>
+    </div>
+  </div>
+
+ 
+  <div class="actions">
+     <%= f.submit "Registrar", class: "btn btn-secondary" %>
+  </div>
+<% end %>

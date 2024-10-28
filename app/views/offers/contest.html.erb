@@ -1,0 +1,52 @@
+<% if notice.present? %>
+  <p class="my-2">
+    <span class="d-block notice" style="color: red"> <strong>Index / offer: <%= notice %> </strong> </span>
+  </p>
+<% end %> 
+
+<h2>Ofertas de cargos con postulantes</h2>
+
+<div id="offers">
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped bg-dark text-light">
+
+      <thead>
+        <tr class="table-primary">
+          <th class="col-1 text-center" scope="col">¿Activo?</th>
+          <th class="col-3" scope="col">Título</th>
+          <th class="col-7" scope="col">Descripción</th>
+          <th class="col-1 text-center" scope="col">Fecha límite</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @offers.each do |offer| %>
+          <tr class="table-light">
+            <td class="text-center" scope="col">
+              <% if offer.active? %> 
+                <span class="status-indicator bg-success"></span>
+              <% else %>
+                <span class="status-indicator bg-danger"></span>
+              <% end %>
+            </td>
+            <td class="text-start"> <%= offer.title %> </td>
+            <td class="text-start"> <%= offer.description %> </td>
+            <td class="text-start"> <%= offer.limit.strftime("%d-%m-%Y") %> </td>
+          </tr>
+          <!-- Lista de postulaciones para cada oferta -->
+          <tr>
+            <td colspan="4">
+              <ul>
+                <% offer.postulations.each do |postulation| %>
+                  <li>Postulante: <%= postulation.user.name %></li>
+                <% end %>
+              </ul>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+
+    </table>
+
+  </div>
+</div>

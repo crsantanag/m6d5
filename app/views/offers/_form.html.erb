@@ -1,0 +1,45 @@
+<%= form_with(model: offer) do |form| %>
+
+  <% if offer.errors.any? %>
+    <div style="color: red">
+      <h2><%= offer.errors.count %> error(es). No es posible crear/actualizar oferta de cargo debido a:</h2>
+
+      <ul>
+        <% offer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-2">
+    <%= form.label :title, "Título", class: "col-6" %><br>
+    <%= form.text_field :title, required: true, class: "ps-2 col-6 border border-2 border-secondary-subtle rounded", style:"height: 35px" %>
+  </div>
+
+  <div class="my-2">
+    <%= form.label :description, "Descripción" %><br>
+    <%= form.text_area :description, required: true, autocomplete: "curriculum", class: "ps-2 col-12 col-sm-6 border border-2 rounded-2 border-secondary-subtle", rows: 3 %>
+  </div>
+
+  <div class="my-2">
+    <%= form.label :active, "¿Visible?" %>
+    <%= form.check_box :active %>
+  </div>
+
+  <div class="my-2">
+    <%= form.label :limit, "Fecha límite de postulación" %><br>
+    <%= form.date_field :limit %>
+  </div>
+ 
+  <div class="my-3">
+    <% if controller_name == "offers" %>
+      <% if action_name == "new" %>
+        <%= form.submit "Crear oferta", class: "btn btn-secondary" %>
+      <% elsif action_name == "edit" %>
+        <%= form.submit "Actualizar", class: "btn btn-secondary" %>
+      <% end %>
+    <% end %>
+  </div>
+
+<% end %>
