@@ -43,7 +43,7 @@ class PostulationsController < ApplicationController
     @postulation = Postulation.new(postulation_params)
 
     if !user_signed_in?
-      redirect_to root_path, notice: "Debe iniciar sesión para postular."
+      redirect_to root_path, notice: "DEBE INICIAR SESIÓN PARA POSTULAR"
       return
     elsif !@offer.present?
       redirect_to offers_path, notice: "No existe la oferta de cargo ** Error interno **"
@@ -51,7 +51,7 @@ class PostulationsController < ApplicationController
     elsif Postulation.exists?(user_id: current_user.id, offer_id: @offer.id)
       puts "current_user.id " + current_user.id.to_s
       puts "offer.id        " + @offer.id.to_s
-      redirect_to offer_path(@offer.id), notice: "Ud. ya postuló a esta oferta de cargo interno. Revise sus postulaciones"
+      redirect_to offer_path(@offer.id), notice: "UD. YA POSTULÓ A ESTE CARGO. REVISE SUS POSTULACIONES"
       return
     end
 
@@ -59,17 +59,17 @@ class PostulationsController < ApplicationController
       @postulation.user_id = current_user.id
       @postulation.offer_id = @offer.id
     else
-      redirect_to root_path, notice: "Debe iniciar sesión para postular."
+      redirect_to root_path, notice: "DEBE INICIAR SESIÓN PARA POSTULAR"
       return
     end
 
     respond_to do |format|
       if @postulation.save
-        format.html { redirect_to postulations_path, notice: "Postulación efectuada" }
+        format.html { redirect_to postulations_path, notice: "POSTULACIÓN REALIZADA" }
         format.json { render :show, status: :created, location: @postulation }
       else
         logger.error @postulation.errors.full_messages
-        format.html { redirect_to offer_path(@offer.id), notice: "Postulación no pudo ser realizada ** Error en .save **" }
+        format.html { redirect_to offer_path(@offer.id), notice: "Postulación no pudo ser realizada ** Error en interno **" }
         format.json { render json: @postulation.errors, status: :unprocessable_entity }
       end
     end
@@ -80,7 +80,7 @@ class PostulationsController < ApplicationController
     @postulation.saw = false  # Cambio a false para que Esteban Steele lea nuevamente wl mensaje
     respond_to do |format|
       if @postulation.update(postulation_params)
-        format.html { redirect_to @postulation, notice: "Postulación actualizada" }
+        format.html { redirect_to @postulation, notice: "POSTULACIÓN ACTUALIZADA" }
         format.json { render :show, status: :ok, location: @postulation }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -97,7 +97,7 @@ class PostulationsController < ApplicationController
 
     respond_to do |format|
       if @postulation.destroy!
-        format.html { redirect_to postulations_path, notice: "Postulación eliminada" }
+        format.html { redirect_to postulations_path, notice: "POSTULACION ELIMINADA" }
         format.json { head :no_content }
       else
         logger.error @postulation.errors.full_messages
@@ -118,7 +118,7 @@ class PostulationsController < ApplicationController
 
     def authorize_owner
       unless current_user&.owner? || current_user&.admin?
-        redirect_to root_path, notice: "No está autorizado para acceder a esta página"
+        redirect_to root_path, notice: "NO ESTÁ AUTORIZADO PARA ACCEDER A ESTA PÁGINA"
       end
     end
 

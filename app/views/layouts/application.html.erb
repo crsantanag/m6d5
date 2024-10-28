@@ -24,7 +24,7 @@
       <%= render "shared/navbar"%>
 
       <% if flash[:alert] %>
-        <div class="alert alert-danger"><strong>En el body: <%= flash[:alert] %></strong></div>
+        <div class="alert alert-danger"><strong><%= flash[:alert] %></strong></div>
       <% end %>
 
       <%= yield %>

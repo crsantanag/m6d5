@@ -5,7 +5,7 @@
 
     <% if notice.present? %>
       <p class="my-2">
-        <span class="d-block notice" style="color: red"> <strong>Show / postulations: <%= notice %> </strong> </span>
+        <span class="d-block notice" style="color: red"> <strong><%= notice %> </strong> </span>
       </p>
     <% end %> 
 
@@ -70,9 +70,11 @@
         <%= link_to   "Regresar", message_postulations_path, class: "py-2 me-2 btn btn-light border" %>
       <% else %>
         <%= link_to   "Regresar", postulations_path, class: "py-2 me-2 btn btn-light border" %>
+        <%= link_to   "Editar",   edit_postulation_path(@postulation),  class: "mx-2 btn btn-primary" %>
       <% end %>
-        <%= button_to "Eliminar", @postulation, method: :delete,  data: { confirm: "¿Estás seguro?" }, class: "mx-2 btn btn-warning", style:"width: 120px" %>
+      <%= button_to "Eliminar", @postulation, method: :delete,  data: { confirm: "¿Estás seguro?" }, class: "mx-2 btn btn-warning", style:"width: 120px" %>
     </div>
 
+    <br>
   </div>
 </div>

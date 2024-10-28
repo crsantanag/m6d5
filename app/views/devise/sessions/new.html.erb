@@ -4,12 +4,12 @@
 
   <div class="field my-2">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "ps-2 col-4 border rounded-2", style:"height: 35px" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "ps-2 col-12 col-sm-4 border rounded-2", style:"height: 35px" %>
   </div>
 
   <div class="field my-2">
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", class: "ps-2 col-2 border rounded-2", style:"height: 35px" %>
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", class: "ps-2 col-12 col-sm-4 border rounded-2", style:"height: 35px" %>
   </div>
 
   <% if devise_mapping.rememberable? %>

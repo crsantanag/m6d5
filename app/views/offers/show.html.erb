@@ -5,7 +5,7 @@
 
     <% if notice.present? %>
       <p class="my-2">
-        <span class="d-block notice" style="color: red"> <strong>Show / offers: <%= notice %> </strong> </span>
+        <span class="d-block notice" style="color: red"> <strong><%= notice %> </strong> </span>
       </p>
     <% end %>
 
@@ -61,7 +61,9 @@
           Fecha límite
         </strong>
         <div>
-          <%= @offer.limit.strftime("%d-%m-%Y")  %>
+          <% if @offer.limit %>
+            <%= @offer.limit.strftime("%d-%m-%Y") %>
+          <% end %>
         </div>
       </div>
       <br>
@@ -78,7 +80,11 @@
       
       <% else %>
         <br>
-        <%= render "postulations/form_show", postulation: @postulation, offer: @offer %> 
+          <% if current_user.curriculum? && current_user.picture.attached? %>
+            <%= render "postulations/form_show", postulation: @postulation, offer: @offer %>
+          <% else %>
+            <p class="btn btn-danger"><strong>PARA POSTULAR DEBE INGRESAR CURRÍCULO VITAE Y FOTO EN SU PERFIL</strong></p>
+          <% end %>
         <br>
 
       <% end %>

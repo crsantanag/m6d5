@@ -15,8 +15,12 @@ class Offer < ApplicationRecord
   private
 
   def date_from_tomorrow
-    if limit.present? && limit <= Date.today
-      errors.add(:date, "- la fecha debe ser a partir de mañana")
+    if limit.present?
+      if limit <= Date.today
+        errors.add(:date, "- la fecha debe ser a partir de mañana")
+      end
+    else
+      errors.add(:date, "- la fecha es obligatoria")
     end
   end
 end

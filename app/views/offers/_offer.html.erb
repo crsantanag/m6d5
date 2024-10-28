@@ -13,7 +13,11 @@
     
     <td class="text-start"> <%= offer.title %> </td>
     <td class="text-start"> <%= offer.description %> </td>
-    <td class="text-start"> <%= offer.limit.strftime("%d-%m-%Y")  %> </td>
+    <td class="text-start"> 
+      <% if offer.limit %>
+        <%= offer.limit.strftime("%d-%m-%Y") %>
+      <% end %>
+    </td>
     <td><div class="d-flex justify-content-center"> <%= link_to "Ver", offer, class: "btn btn-primary" %> </div></td>
   </tr>
 

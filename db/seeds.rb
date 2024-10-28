@@ -15,7 +15,19 @@ User.create!(
   phone: 987654321,
   role: 1,
   picture: File.open(Rails.root.join("db/seeds/esteban.jpg")))
+
+Offer.create!(
+  title: "Ayudante bodega",
+  Description: "Recibir, verificar e ingresar la documentación y la mercadería que debe resguardarse en la bodega. Almacenar y controlar la mercadería que ingresa de acuerdo con el código establecido. Alistar los pedidos de los materiales de las diferentes unidades administrativas.",
+  user_id: User.last.id)
+
+Offer.create!(
+  title: "Ayudante contable",
+  Description: "Dependiente de la gerencia de Administración y Finanzas. El cargo de ayudante contable tiene por función colaborar en trasladar la información de las transacciones diarias a los libros contables digitales, libro diario y libro mayor, en ausencia de libros físicos, para el registro diario de las transacciones.",
+  user_id: User.last.id)
+
 puts "La cuenta de Esteban (owner) ha sido creada: esteban@empresa.cl con privilegios para crear usuarios y ofertas de cargos"
+puts "Se han creado 2 ofertas de cargos"
 
 User.create!(
   email: "steve@empresa.cl",
@@ -24,6 +36,7 @@ User.create!(
   phone: 987654321,
   role: 0,
   picture: File.open(Rails.root.join("db/seeds/user1.jpg")))
+
 puts "La cuenta de Steve (empleado) ha sido creada: steve@empresa.cl con 2 postulaciones "
 
 User.create!(
@@ -33,6 +46,7 @@ User.create!(
   phone: 987654321,
   role: 0,
   picture: File.open(Rails.root.join("db/seeds/user2.jpg")))
+
 puts "La cuenta de Linda (emplaeda) ha sido creada: linda@empresa.cl con 1 postulación"
 
 User.create!(
@@ -42,4 +56,5 @@ User.create!(
   phone: 987654321,
   role: 0,
   picture: File.open(Rails.root.join("db/seeds/user3.jpg")))
+
 puts "La cuenta de Juan (empleado)ha sido creada: juan@empresa.cl sin postulaciones"

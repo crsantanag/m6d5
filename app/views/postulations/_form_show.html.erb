@@ -21,8 +21,12 @@
     </div>
   </div>
 
-  <div class = "actions">
-    <%= form.submit "Postular", class: "btn btn-primary my-0", style: "width:100px" %>
-  </div>
+  <% if current_user.curriculum? && current_user.picture.attached? %>
+    <div class = "actions">
+      <%= form.submit "Postular", class: "btn btn-primary my-0", style: "width:100px" %>
+    </div>
+  <% else %>
+    <p> NO PUEDE </p>
+  <% end %>
 
 <% end %>
