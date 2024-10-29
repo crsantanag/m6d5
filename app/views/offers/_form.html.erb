@@ -14,12 +14,12 @@
 
   <div class="my-2">
     <%= form.label :title, "Título", class: "col-6" %><br>
-    <%= form.text_field :title, required: true, class: "ps-2 col-12 col-sm-9 border border-2 border-secondary-subtle rounded", style:"height: 35px" %>
+    <%= form.text_field :title, required: true, class: "ps-2 col-11 col-sm-9 border border-2 border-secondary-subtle rounded", style:"height: 35px" %>
   </div>
 
   <div class="my-2">
     <%= form.label :description, "Descripción" %><br>
-    <%= form.text_area :description, required: true, autocomplete: "curriculum", class: "ps-2 col-12 col-sm-9 border border-2 rounded-2 border-secondary-subtle", rows: 3 %>
+    <%= form.text_area :description, required: true, autocomplete: "curriculum", class: "ps-2 col-11 col-sm-9 border border-2 rounded-2 border-secondary-subtle", rows: 3 %>
   </div>
 
   <div class="my-2">
@@ -33,7 +33,7 @@
   </div>
 
  
-  <div class="my-3">
+  <div class="my-4">
     <% if controller_name == "offers" %>
       <% if action_name == "new" || action_name == "create" %>
         <%= form.submit "Crear oferta", class: "btn btn-secondary" %>

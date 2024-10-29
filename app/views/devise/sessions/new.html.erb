@@ -4,12 +4,12 @@
 
   <div class="field my-2">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "ps-2 col-12 col-sm-4 border rounded-2", style:"height: 35px" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "ps-2 col-11 col-sm-4 border rounded-2", style:"height: 35px" %>
   </div>
 
   <div class="field my-2">
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", class: "ps-2 col-12 col-sm-4 border rounded-2", style:"height: 35px" %>
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", class: "ps-2 col-11 col-sm-4 border rounded-2", style:"height: 35px" %>
   </div>
 
   <% if devise_mapping.rememberable? %>
@@ -20,9 +20,9 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Iniciar sesión", class: "my-3 btn btn-secondary" %>
+    <%= f.submit "Iniciar sesión", class: "my-3 btn btn-secondary col-5 col-md-2" %>
   </div>
 <% end %>
 
-<%= link_to "¿Olvidó su password?", new_password_path(resource_name), class: "mb-3 btn btn-info bold" %><br/>
+<%= link_to "¿Olvidó su password?", new_password_path(resource_name), class: "mb-3 btn btn-info bold col-5 col-md-2" %><br/>
 

@@ -37,8 +37,12 @@
           <tr>
             <td colspan="4">
               <ul>
-                <% offer.postulations.each do |postulation| %>
+                <% if offer.postulations.count == 0 %>
+                  <p>SIN POSTULACIONES</p>
+                <% else %>
+                  <% offer.postulations.each do |postulation| %>
                   <li>Postulante: <%= postulation.user.name %></li>
+                  <% end %>
                 <% end %>
               </ul>
             </td>
