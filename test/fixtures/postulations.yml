@@ -3,11 +3,7 @@
 one:
   message: MyString
   saw: false
-  user: one
-  offer: one
+  user: esteban
+  offer: first_offer
 
-two:
-  message: MyString
-  saw: false
-  user: two
-  offer: two
+
