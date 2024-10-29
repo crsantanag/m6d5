@@ -45,7 +45,7 @@ class PostulationsController < ApplicationController
     if !user_signed_in?
       redirect_to root_path, notice: "DEBE INICIAR SESIÓN PARA POSTULAR"
       return
-    elsif !current_user.curriculum? !! !current_user.picture.attached?
+    elsif !current_user.curriculum.present? || !current_user.picture.attached?
       redirect_to offers_path, notice: "DEBE INGRESAR SU CURRICULUM Y FOTO PARA POSTULAR"
       return
     elsif Postulation.exists?(user_id: current_user.id, offer_id: @offer.id)
