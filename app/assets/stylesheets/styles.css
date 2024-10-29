@@ -14,3 +14,14 @@ body {
     height: 20px;
     border-radius: 50%
 }
+
+.navbar {
+    background-color: #ffffff !important;
+    opacity: 1 !important; 
+  }
+  
+  @media (max-width: 767px) {
+    .navbar-collapse {
+      background-color: #ffffff !important;
+    }
+  }

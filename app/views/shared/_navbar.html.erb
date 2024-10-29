@@ -1,5 +1,5 @@
 
-    <nav class="px-2 px-md-10 mx-0 navbar navbar-expand-lg navbar-light bg-primary bg-body-tertiary fixed-top border-top border-bottom border-2 border-info " style="height: 90px">
+    <nav class="px-2 px-md-10 mx-0 navbar bg-white bg-opacity-100 navbar-expand-lg bg-body-tertiary fixed-top border-top border-bottom border-2 border-info" style="height: 90px">
         <div class="container-fluid">
 
             <strong> <%= link_to "ALGORITMO",
@@ -55,7 +55,7 @@
                 <div class="d-flex mx-2 justify-content-end align-items-center">
                     <% if user_signed_in? %>
                         <% if current_user.picture.attached? %>
-                            <div class="d-flex justify-content-center">
+                            <div class="d-flex justify-content-center d-none d-md-block">
                             <%= image_tag current_user.picture, class: "img-fluid rounded-circle mx-2", style: "max-width: 70px; max-height: 70px; width: 100%; height: auto;" %>
                             </div>
                         <% end %>
