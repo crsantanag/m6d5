@@ -54,14 +54,24 @@
     <%= f.text_area :curriculum, required: true, autocomplete: "curriculum", class: "ps-2 col-11 col-md-6 border border-2 rounded-2 border-secondary-subtle", rows: 3 %>
   </div>
 
-  <div class="my-2">
-    <%= f.label :picture, "Foto - Formato relación 1:1 - Tamaño máx 1 Mb", class: "col-12" %>
-    <br>
-    <div class="d-flex align-items-center">
-      <%= f.file_field :picture, placeholder: "Cargar archivo de imagen", class: "ps-2 py-1 col-11 col-md-6 border border-2 border-secondary-subtle rounded", style:"height: 40px" %>
-    </div>
+  <div class="d-md-flex col-11 col-md-6 my-2 align-items-start border border-2 border-secondary-subtle rounded">
+
+      <div class="my-2"> 
+          <% if current_user.picture.attached? %>
+              <%= image_tag current_user.picture, class: "img-fluid border border-2 border-secondary-subtle rounded", style: "max-width: 70px; max-height: 70px; width: 100%; height: auto;" if current_user.picture.attached? %>
+          <% end %>
+      </div>
+
+      <div class="ms-md-3 my-2">
+        <%= f.label :picture, "Foto - Formato relación 1:1 - Tamaño máx 1 Mb" %>
+        <br>
+        <div class="d-flex align-items-center">
+          <%= f.file_field :picture, class: "ps-2 py-1 col-12 border border-2 border-secondary-subtle rounded", style:"height: 40px" %>
+        </div>
+      </div>
+      <br>
+
   </div>
-  <br>
 
   <div class="field">
     <%= f.label :current_password %> <i>( se requiere su password actual para confirmar los cambios)</i><br />

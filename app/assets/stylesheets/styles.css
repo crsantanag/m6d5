@@ -20,8 +20,11 @@ body {
     opacity: 1 !important; 
   }
   
-  @media (max-width: 767px) {
-    .navbar-collapse {
-      background-color: #ffffff !important;
+@media (max-width: 767px) {
+  .navbar-collapse {
+    background-color: #ffffff !important;
+    border: 2px solid #000 !important;  /* Cambia el color y grosor del borde según prefieras */
+    border-radius: 5px !important;        /* Redondea las esquinas del borde */
+    padding: 10px !important;             /* Agrega un poco de espacio interior */
     }
   }
