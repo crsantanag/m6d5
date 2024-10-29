@@ -14,20 +14,21 @@ User.create!(
   name: "Esteban García",
   phone: 987654321,
   role: 1,
+  curriculum: "Mi CV",
   picture: File.open(Rails.root.join("db/seeds/esteban.jpg")))
 
 puts "La cuenta de Esteban (owner) ha sido creada: esteba@miempresa.cl con privilegios para crear usuarios y ofertas de cargos"
 
 Offer.create!(
   title: "Ayudante bodega",
-  Description: "Recibir, verificar e ingresar la documentación y la mercadería que debe resguardarse en la bodega. Almacenar y controlar la mercadería que ingresa de acuerdo con el código establecido. Alistar los pedidos de los materiales de las diferentes unidades administrativas.",
+  description: "Recibir, verificar e ingresar la documentación y la mercadería que debe resguardarse en la bodega. Almacenar y controlar la mercadería que ingresa de acuerdo con el código establecido. Alistar los pedidos de los materiales de las diferentes unidades administrativas.",
   active: true,
   limit: Date.tomorrow,
   user_id: User.last.id)
 
 Offer.create!(
   title: "Ayudante contable",
-  Description: "Dependiente de la gerencia de Administración y Finanzas. El cargo de ayudante contable tiene por función colaborar en trasladar la información de las transacciones diarias a los libros contables digitales, libro diario y libro mayor, en ausencia de libros físicos, para el registro diario de las transacciones.",
+  description: "Dependiente de la gerencia de Administración y Finanzas. El cargo de ayudante contable tiene por función colaborar en trasladar la información de las transacciones diarias a los libros contables digitales, libro diario y libro mayor, en ausencia de libros físicos, para el registro diario de las transacciones.",
   active: true,
   limit: Date.tomorrow,
   user_id: User.last.id)
@@ -40,6 +41,7 @@ User.create!(
   name: "Steve Austin",
   phone: 987654321,
   role: 0,
+  curriculum: "Mi CV",
   picture: File.open(Rails.root.join("db/seeds/user1.jpg")))
 
 User.create!(
@@ -48,6 +50,7 @@ User.create!(
   name: "Linda Hamilton",
   phone: 987654321,
   role: 0,
+  curriculum: "Mi CV",
   picture: File.open(Rails.root.join("db/seeds/user2.jpg")))
 
 User.create!(
@@ -56,6 +59,7 @@ User.create!(
   name: "Juan Machuca",
   phone: 987654321,
   role: 0,
+  curriculum: "Mi CV",
   picture: File.open(Rails.root.join("db/seeds/user3.jpg")))
 
 puts "Se crearon las cuentas de Steve, Linda y Juan con el email: nombre@miempresa.cl, paswword: 123456 y sin postulaciones"
