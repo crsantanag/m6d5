@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     if current_user.normal?
       if !current_user.curriculum.present? || !current_user.picture.present?
         puts "No existe curriculum o foto"
-        flash[:alert] = "PARA POSTULAR DEBE INGRESAR CURRÍCULO VITAE Y FOTO EN SU PERFIL"
+        flash[:alert] = "PARA PODER POSTULAR DEBE INGRESAR CURRÍCULO Y FOTO EN SU PERFIL"
         return edit_user_registration_path
       end
     end

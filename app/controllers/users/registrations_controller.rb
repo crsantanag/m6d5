@@ -11,7 +11,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     build_resource(sign_up_params)
 
     if resource.save
-      redirect_to offers_path, notice: "Usuario creado!"
+      flash[:alert] = "USUARIO CREADO"
+      redirect_to new_user_registration_path, notice: "USUARIO CREADO"
     else
       Rails.logger.error resource.errors.full_messages
       clean_up_passwords(resource)
@@ -59,7 +60,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def check_owner
     unless user_signed_in? && current_user.role == "owner"
-        redirect_to root_path, alert: "No está autorizado para realizar esta acción - Debe solicitarlo a Esteban Steele"
+        redirect_to root_path, alert: "NO ESTÁ AUTORIZADO PARA REALIZAR ESTA ACCIÓN"
     end
   end
 

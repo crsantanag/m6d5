@@ -2,10 +2,14 @@
 
   <tr class="table-light">
     <td class="text-center" scope="col">
-      <% if postulation.saw? %> 
-          <span class="status-indicator bg-success"></span>
+      <% if postulation.offer.active? %>
+        <% if postulation.saw? %> 
+            <span class="status-indicator bg-success"></span>
+        <% else %>
+            <span class="status-indicator bg-danger"></span>
+        <% end %>
       <% else %>
-          <span class="status-indicator bg-danger"></span>
+         <span class="status-indicator bg-warning"></span>
       <% end %>
     </td>
     <td class="text-start"> <%= postulation.offer.title %> </td>
