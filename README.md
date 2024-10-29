@@ -7,17 +7,17 @@ Ruby on Rails - postgresql
 
 ## Descripción
 
-Esta aplicación permite, para una empresa, que se creen ofertas de cargos internos de manera que los trabajadores puedan postular a ellos, y así mejorar sus rentas y ascender a nuevos cargos dentro de la organización.
+Esta aplicación permite, para una empresa, que se creen ofertas de cargos internos de manera que los trabajadores puedan postular a ellos, mejorando así sus remuneraciones y ascendiendo a nuevos cargos dentro de la organización.
 
 OBS:  
-   1. La aplicación permite determinadas vistas según el perfil del usuario (perfil normal, perfil owner y perfil admin).  
-   2. El registro de las cuentas de usuario sólo la puede realizar el owner (o admin). En este caso los campos curriculum y foto quedan sin datos.  
-   3. Cada vez que el usuario ingrese a la aplicación con su email y password, y mientras no ingrese su curriculum y foto, se le mostrará un mensaje solicitando estos datos. Para hacer esta acción, se debe hacer click sobre su nombre en la barra de navegación y lo lleva a la vista de modificación.  
-   4. Sólo el usuario owner (o admin) puede crear ofertas de cargos, controlando la aplicación -en el navbar- las opciones autorizadas. Al crear una oferta se piden, entre otros campos:  
+   1. La aplicación permite mostrar las vistas según el perfil del usuario (perfil normal, perfil owner y perfil admin).  
+   2. El registro de las cuentas de usuario sólo la puede realizar el owner (o admin). En este caso, los campos curriculum y foto quedan sin datos inicialmente.  
+   3. Cada vez que el usuario ingrese a la aplicación con su email y password, y mientras no ingrese su curriculum y foto, se le mostrará un mensaje solicitando estos datos. Para hacer esta acción, se debe hacer click sobre su nombre en la barra de navegación y lo redijirá a la vista de modificación.  
+   4. Sólo el usuario owner (o admin) puede crear ofertas de cargos, controlando la aplicación -en el navbar y en el controlador respectivo- las opciones autorizadas. Al crear una oferta se piden, entre otros campos:  
      - active: permite dejar activa o inactiva una oferta de trabajo. Esto es útil para "bajar" momentáneamente una oferta de cargo  
      - fecha límite: permite indicar la fecha límite para postular a la oferta de cargo.  
-   5. Para postular a una oferta de cargo, el usuario deberá -previamente- completar su currículo y subir su foto.  
-   6. Al postular, es obligación indicar el motivo de dicha postulación. Una vez realizada esta acción, la postulación quedará con un indicador color rojo que indica que aún no es vista por el owner (o admin). Cuando la postulación sea vista por el owner, el indicador pasará a verde. Lo mismo ocurre para la vista del owner (o admin).  
+   5. Para postular a una oferta de cargo el usuario deberá -previamente- subir a su perfil su currículo y su foto.  
+   6. Al postular es obligación indicar el motivo de dicha postulación. Una vez realizada esta acción, la postulación quedará con un indicador color rojo que le indica que aún no es vista por el owner (o admin). Cuando la postulación sea vista por el owner, el indicador pasará a verde. Lo mismo ocurre para la vista del owner (o admin).  
    7. En la vista del usuario, éste podrá ver las ofertas de cargos y el estado de sus postulaciones, pudiendo editarlas o eliminarlas.  
    8. En la vista del owner (o admin), éste podrá crear ofertas de cargos, ver las ofertas de cargos y editarlas o eliminarlas, y también podrá ver las postulaciones de los usuarios a las diferentes ofertas de cargos. También podrá crear usuarios (ver punto 2).  
    9. Cuando una visita ingresa a la aplicación, sólo tendrá acceso a una página de inicio.  
@@ -65,7 +65,7 @@ Las gemas que se deben instalar son:
    - devise (autenticación)
    - figaro (configuración de variables ENV)  
    - activestorage (almacenamiento de imágenes). Instalar: rails active_storage:install  
-   - font-awesome-sass (íconos) - cambiar archivo app/assets/stylesheet
+   - font-awesome-sass (íconos) - renombrar archivo app/assets/stylesheet/application.css a app/assets/stylesheet/application.css.scss e incorporar @import "font-awesome"; dentro de él.  
   
 4. Crea la base de datos, realiza la migración y carga los datos de prueba (ejecutar archivo seed.rb)  
     - rails db:create  
@@ -76,7 +76,8 @@ Las gemas que se deben instalar son:
 Levanta el servidor y prueba la aplición.  
 root está en /  
   
-Este proyecto no cuenta con pruebas automatizadas. Puedes probar manualmente todas las funcionalidades.  
+Este proyecto cuenta con pruebas automatizadas para el proceso de postulación. Revisar test/fixtures y test/models/postulation_test.rb   
+Las otras puebas se pueden implementar, o bien, hacerlas manualmente. Hay datos para pruebas en seeds.rb  
   
 ## Licencia  
   
