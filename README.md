@@ -79,6 +79,8 @@ root está en /
 Este proyecto cuenta con pruebas automatizadas para el proceso de postulación. Revisar test/fixtures y test/models/postulation_test.rb   
 Las otras puebas se pueden implementar, o bien, hacerlas manualmente. Hay datos para pruebas en seeds.rb  
   
+![Test](test.jpg)
+  
 Para ejecutar la prueba el comando es: rails test test/models/postulation_test.rb -n test_should_create_a_postulation  
     
 ## Licencia  
