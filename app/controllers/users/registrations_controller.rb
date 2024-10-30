@@ -12,13 +12,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     if resource.save
       flash[:alert] = "USUARIO CREADO"
-      redirect_to new_user_registration_path, notice: "USUARIO CREADO"
+      redirect_to pages_exito_path(id: resource.id) and return
     else
       Rails.logger.error resource.errors.full_messages
       clean_up_passwords(resource)
       set_minimum_password_length
-      flash.now[:alert] = "No se pudo crear el usuario. Verifique los errores."
-      render :new, formats: :html
+      respond_with resource
     end
   end
 

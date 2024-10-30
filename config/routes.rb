@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   get "pages/index"
 
-  get "/messages", to: "postulations#message", as: "message_postulations"
-  get "/contests", to: "offers#contest",       as: "contest_offers"
+  get "/messages",    to: "postulations#message", as: "message_postulations"
+  get "/contests",    to: "offers#contest",       as: "contest_offers"
+  get "/pages/exito", to: "pages#exito",          as: "pages_exito"
 
   resources :postulations, only: [ :index, :create, :show, :edit, :update, :destroy ]
 
