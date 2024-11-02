@@ -17,6 +17,14 @@ body {
   background-color: #ffffff !important;
 }
 
+.navbar-nav .nav-item,
+.btn {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+
 .custom-btn-5 {
   height:        calc(2.25rem + 5px);
   padding-left:  calc(0.75rem + 5px);
