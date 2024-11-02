@@ -83,7 +83,7 @@
           <% if current_user.curriculum? && current_user.picture.attached? %>
             <%= render "postulations/form_show", postulation: @postulation, offer: @offer %>
           <% else %>
-            <p class="btn btn-danger"><strong>PARA POSTULAR DEBE INGRESAR CURRÍCULO VITAE Y FOTO EN SU PERFIL</strong></p>
+            <p class="bg-danger text-white text-center py-2"><strong>PARA POSTULAR DEBE INGRESAR CURRÍCULO VITAE Y FOTO EN SU PERFIL</strong></p>
           <% end %>
         <br>
 
