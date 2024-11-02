@@ -30,7 +30,7 @@ Vista para todos los usuarios al entrar a la aplicación. Está en /root y permi
   
 ## Usuario owner (o admin) 
   
-Esta es la vista del owner con las opciones disponibles (navbar) y, particularmente en esta ocación, con la vista de las ofertas de cargos con los postulantes -si existen-.  
+Esta es la vista del owner con las opciones disponibles (navbar) y, particularmente en esta ocación, con la vista de las ofertas de cargos con los postulantes -si existen-. En la navbar se ve que hay una postulación con un mensaje que aún no es leido por el owner o admin (campana con un número "1" al lado)  
   
 ![Author](screen2.jpg)  
 
