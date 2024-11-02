@@ -34,7 +34,7 @@ Esta es la vista del owner con las opciones disponibles (navbar) y, particularme
   
 ![Author](screen2.jpg)  
 
-## Usuario normal (trabajdor)  
+## Usuario normal (trabajador)  
 Esta es la vista del usuario normal con las opciones disponibles (navbar) y, particularmente en esta ocación, con la vista de una de las ofertas de cargos a las cuales ha postulado.  
   
 ![Author](screen3.jpg) 
