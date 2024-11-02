@@ -30,11 +30,12 @@ Vista para todos los usuarios al entrar a la aplicación. Está en /root y permi
   
 ## Usuario owner (o admin) 
   
-La vista de inicio, una vez iniciada sesión, para el usuario owner (o admin) tiene la opción de crear ofertas de cargos y administrarlas acorde a lo indicado en la descripción.  
+Esta es la vista del owner con las opciones disponibles (navbar) y, particularmente en esta ocación, con la vista de las ofertas de cargos con los postulantes -si existen-.  
   
 ![Author](screen2.jpg)  
 
 ## Usuario normal (trabajdor)  
+Esta es la vista del usuario normal con las opciones disponibles (navbar) y, particularmente en esta ocación, con la vista de una de las ofertas de cargos a las cuales ha postulado.  
   
 ![Author](screen3.jpg) 
   
