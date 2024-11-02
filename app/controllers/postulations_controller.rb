@@ -20,11 +20,11 @@ class PostulationsController < ApplicationController
   # GET /postulations/1 or /postulations/1.json
   def show
     @offer = Offer.find(@postulation.offer_id)
-    # Aquí actualizo SAW de rojo a verde ,  es decir, de false a true
+    # Si es el owner quien ve la postulación, entonces actualizo SAW de rojo a verde, es decir, de false a true
     if current_user.owner?
       @postulation.saw = true
       if !@postulation.save
-        flash[:notice] = "Error interno - No es posible modificar SAW"
+        flash[:notice] = "Error interno - No es posible modificar VISTO"
       end
     end
   end
@@ -43,13 +43,16 @@ class PostulationsController < ApplicationController
     @postulation = Postulation.new(postulation_params)
 
     if !user_signed_in?
-      redirect_to root_path, notice: "DEBE INICIAR SESIÓN PARA POSTULAR"
+      flash[:alert] = "DEBE INICIAR SESIÓN PARA POSTULAR"
+      redirect_to root_path
       return
     elsif !current_user.curriculum.present? || !current_user.picture.attached?
-      redirect_to offers_path, notice: "DEBE INGRESAR SU CURRICULUM Y FOTO PARA POSTULAR"
+      flash[:alert] = "DEBE INGRESAR SU CURRICULUM Y FOTO PARA POSTULAR"
+      redirect_to offers_path
       return
     elsif Postulation.exists?(user_id: current_user.id, offer_id: @offer.id)
-      redirect_to offer_path(@offer.id), notice: "UD. YA POSTULÓ A ESTE CARGO. REVISE SUS POSTULACIONES"
+      flash[:alert] = "NO PUEDE POSTULAR AL MISMO CARGO MÁS DE 1 VEZ"
+      redirect_to offer_path(@offer.id)
       return
     end
 
@@ -57,13 +60,15 @@ class PostulationsController < ApplicationController
       @postulation.user_id = current_user.id
       @postulation.offer_id = @offer.id
     else
-      redirect_to root_path, notice: "DEBE INICIAR SESIÓN PARA POSTULAR"
+      flash[:alert] = "DEBE INICIAR SESIÓN PARA POSTULAR" # o bien, se eliminó la oferta de cargo
+      redirect_to root_path
       return
     end
 
     respond_to do |format|
       if @postulation.save
-        format.html { redirect_to postulations_path, notice: "POSTULACIÓN REALIZADA" }
+        flash[:alert] = "POSTULACIÓN REALIZADA"
+        format.html { redirect_to postulations_path }
         format.json { render :show, status: :created, location: @postulation }
       else
         logger.error @postulation.errors.full_messages
@@ -78,7 +83,8 @@ class PostulationsController < ApplicationController
     @postulation.saw = false  # Cambio a false para que Esteban Steele lea nuevamente wl mensaje
     respond_to do |format|
       if @postulation.update(postulation_params)
-        format.html { redirect_to @postulation, notice: "POSTULACIÓN ACTUALIZADA" }
+        flash[:alert] = "POSTULACIÓN ACTUALIZADA"
+        format.html { redirect_to @postulation }
         format.json { render :show, status: :ok, location: @postulation }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -92,10 +98,12 @@ class PostulationsController < ApplicationController
     @postulation = Postulation.find(params[:id])
 
     # Aquí revisar si quien desea eliminar la postulación sea el dueño de la misma
+    # Esto pq puede haber más de un owner o administrador
 
     respond_to do |format|
       if @postulation.destroy!
-        format.html { redirect_to postulations_path, notice: "POSTULACION ELIMINADA" }
+        flash[:alert] = "POSTULACIÓN ELIMINADA"
+        format.html { redirect_to postulations_path }
         format.json { head :no_content }
       else
         logger.error @postulation.errors.full_messages
@@ -116,7 +124,8 @@ class PostulationsController < ApplicationController
 
     def authorize_owner
       unless current_user&.owner? || current_user&.admin?
-        redirect_to root_path, notice: "NO ESTÁ AUTORIZADO PARA ACCEDER A ESTA PÁGINA"
+        flash[:alert] = "USUARIO NO AUTORIZADO"
+        redirect_to root_path
       end
     end
 

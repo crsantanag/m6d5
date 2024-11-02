@@ -56,9 +56,9 @@
 
   <div class="d-md-flex col-11 col-md-6 my-2 align-items-start border border-2 border-secondary-subtle rounded">
 
-      <div class="my-2"> 
+      <div class="my-2 ms-2"> 
           <% if current_user.picture.attached? %>
-              <%= image_tag current_user.picture, class: "img-fluid border border-2 border-secondary-subtle rounded", style: "max-width: 70px; max-height: 70px; width: 100%; height: auto;" if current_user.picture.attached? %>
+              <%= image_tag current_user.picture, class: "img-fluid border border-1 border-secondary-subtle rounded", style: "max-width: 70px; max-height: 70px; width: 100%; height: auto;" if current_user.picture.attached? %>
           <% end %>
       </div>
 

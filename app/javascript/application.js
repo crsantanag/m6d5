@@ -1,11 +1,32 @@
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
+// application.js
+
 import "@hotwired/turbo-rails"
 import "controllers"
 
 document.addEventListener("turbo:load", function() {
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-      return new bootstrap.Tooltip(tooltipTriggerEl);
+  // Inicializa tooltips
+  const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+
+  // Resetear dropdown después de seleccionar una opción
+  const dropdownItems = document.querySelectorAll('.dropdown-item');
+  dropdownItems.forEach(item => {
+    item.addEventListener('click', function() {
+      const dropdownToggle = item.closest('.dropdown').querySelector('.dropdown-toggle');
+      let dropdown = bootstrap.Dropdown.getInstance(dropdownToggle);
+
+      if (dropdown) {
+        dropdown.hide();  // Cierra el dropdown
+        bootstrap.Dropdown.clearMenus(); // Cierra cualquier menú abierto para asegurar limpieza
+        dropdown.dispose(); // Destruye la instancia actual del dropdown
+
+        // Reinicia la instancia del dropdown para que esté listo para el siguiente uso
+        dropdown = new bootstrap.Dropdown(dropdownToggle);
+      }
     });
   });
+});
+
   

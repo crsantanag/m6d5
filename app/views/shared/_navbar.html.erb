@@ -1,100 +1,83 @@
 
-    <nav class="px-2 px-md-10 mx-0 navbar bg-white bg-opacity-100 navbar-expand-lg bg-body-tertiary fixed-top border-top border-bottom border-3 border-info" style="height: 90px">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary px-auto px-md-10 mx-0 fixed-top border-top border-bottom border-2 border-info" style="height: 90px">
+
         <div class="container-fluid">
 
-            <strong> <%= link_to "ALGORITMO",
-                            root_path,
-                            class: "navbar-brand",
-                            data: { bs_toggle: "tooltip", bs_placement: "bottom" },
-                            title: "Ir a la página de inicio" %> </strong>
+            <div class="d-flex navbar-brand justify-content-start align-items-center gap-2">
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <strong class="ps-2 fs-5"> 
+                    <%= link_to "ALGORITMO", root_path, class:"navbar-brand text-body-secondary",
+                    data: { bs_toggle: "tooltip", bs_placement: "bottom" }, title: "Ir a la página de inicio" %>
+                </strong>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                <ul class="navbar-nav ms-0 me-3 me-md-auto mb-2 mb-lg-0">
                 <% if user_signed_in? %>
-                    <li class="nav-item ">
-                        <%= link_to "Ver ofertas",
-                                offers_path,
-                                class:"nav-link btn btn-light fs-5 me-3 border border-2 rounded-2 border-secondary-subtle",
-                                data: { bs_toggle: "tooltip", bs_placement: "bottom" },
-                                title: "Ver ofertas de trabajo" %>
-                    </li>
-                    <% if current_user.normal? %>
-                        <li class="nav-item">
-                            <%= link_to "Ver mis postulaciones ".html_safe + "<span class='top-0 badge rounded-pill bg-danger'> + #{@postulations.count} </span>".html_safe,
-                                postulations_path,
-                                class:"nav-link btn btn-light fs-5 me-3 border border-2 rounded-2 border-secondary-subtle",
-                                data: { bs_toggle: "tooltip", bs_placement: "bottom" },
-                                title: "Ver mis postulaciones" %>
-                        </li>
 
-                    <% end %>
-                    <% if ( current_user.owner? ||  current_user.admin?) %> 
-                        <li class="nav-item">
-                            <%= link_to "Ver postulaciones",
-                                contest_offers_path,
-                                class:"nav-link btn btn-light fs-5 me-3 border border-2 rounded-2 border-secondary-subtle",
-                                data: { bs_toggle: "tooltip", bs_placement: "bottom" },
-                                title: "Ver todas las postulaciones" %>
-                        </li>
-                        <li class="nav-item">
-                            <%= link_to "Crear oferta cargo",
-                                new_offer_path,
-                                class:"nav-link btn btn-light fs-5 me-3 border border-2 rounded-2 border-secondary-subtle",
-                                data: { bs_toggle: "tooltip", bs_placement: "bottom" },
-                                title: "Crear una oferta de cargo" %>
-                        </li>
-                    <% end %>
-                <% end %>
-                </ul> 
-
-                <div class="d-flex mx-2 justify-content-end align-items-center">
-                    <% if user_signed_in? %>
-                        <% if current_user.picture.attached? %>
-                            <div class="d-flex justify-content-center d-none d-md-block">
-                            <%= image_tag current_user.picture, class: "img-fluid border border-2 rounded-2 border-secondary-subtle", style: "max-width: 70px; max-height: 70px; width: 100%; height: auto;" %>
-                            </div>
-                        <% end %>
-
-                        <% if current_user.name.present? %>
-                            <span class="text-dark fs-4"></span> <%= link_to current_user.name, edit_user_registration_path(@user),  class: "ms-2 me-2 btn btn-primary",
-                                data: { bs_toggle: "tooltip", bs_placement: "bottom" },
-                                title: "Editar mi cuenta" %>
-                        <% else %>
-                            <span class="text-dark fs-4 mx-2"><%= link_to current_user.email, edit_user_registration_path(@user),  class: "ms-2 me-2 btn btn-primary" %> </span> 
-                        <% end %>
-
-                        <% if (current_user.owner? || current_user.admin?) %> 
-                            <%= link_to message_postulations_path, 
-                                class: "d-flex align-items-center justify-content-center border border-2 border-danger rounded text-decoration-none me-2",
-                                data: { bs_toggle: "tooltip", bs_placement: "bottom" },
-                                title: "Ver mensajes postulaciones" do %>
-                                    <i class="mt-3 mb-3 me-2 fa-regular fa-bell fa-2xl text-danger"></i>
-                                    <span class="me-2 badge rounded-pill bg-danger">+ <%= @postulations_unseen.count %></span>
-                            <% end %>
-                        
-                            <%= link_to "Registrar", new_user_registration_path, 
-                                    class: "btn btn-secondary me-2",
-                                    data: { bs_toggle: "tooltip", bs_placement: "bottom" },
-                                    title: "Registrar un usuario" %>
-
-                        <% end %>
-
-                        <%= button_to "Cerrar sesión", destroy_user_session_path, class: "btn btn-secondary me-2", method: :delete %>
+                    <% if current_user.name.present? %>
+                        <%= link_to current_user.name, edit_user_registration_path(@user), class: "btn btn-primary", data: { bs_toggle: "tooltip", bs_placement: "bottom" }, title: "Editar mi cuenta"%>
                     <% else %>
-                        <div>
-                            <%= link_to "Iniciar sesión", new_user_session_path,   class: "btn btn-secondary me-2" %>
+                        <span class="text-dark fs-5 mx-2"><%= link_to current_user.email, edit_user_registration_path(@user), class: "ms-2 me-2 btn btn-primary" %> </span> 
+                    <% end %>
+
+                    <% if current_user.picture.attached? %>
+                        <div class="d-flex justify-content-center d-none d-lg-block">
+                            <%= image_tag current_user.picture, class: "img", style: "width: 70px; height: 70px; " %>
                         </div>
                     <% end %>
-                </div>
+
+                <% end %>
 
             </div>
 
-        </div>
 
+                <% if user_signed_in? %>
+
+                    <button class="navbar-toggler align-self-start mt-3 mb-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
+
+                        <ul class="navbar-nav w-100 gap-3 me-auto">
+
+                            <li class="nav-item w-100">
+                            <% if (current_user.owner? || current_user.admin?) && @postulations_unseen.count > 0 %>
+                                <%= link_to message_postulations_path, 
+                                class: "d-flex align-items-center justify-content-center border border-2 border-danger rounded text-decoration-none me-2 mt-1 custom-btn-5" do %>
+                                    <i class="mt-3 mb-3 me-2 fa-regular fa-bell fa-2xl text-danger"></i>
+                                    <span class="me-2 badge rounded-pill bg-danger"> <%= @postulations_unseen.count %></span>
+                                <% end %>
+                            <% end %>
+                            </li>
+
+                            <li class="nav-item w-100">
+                                <%= link_to "Ofertas", offers_path, class:"nav-link btn btn-light fs-5 border border-2 rounded-2 border-secondary-subtle",
+                                    data: { bs_toggle: "tooltip", bs_placement: "bottom" }, title: "Ver las ofertas de trabajo" %>
+                            </li>
+                            <% if current_user.normal? %>
+                                <li class="nav-item w-100">
+                                    <%= link_to "Postulaciones ".html_safe + "<span class='top-0 badge rounded-pill bg-danger'> #{@postulations.count} </span>".html_safe, postulations_path, class:"nav-link btn btn-light fs-5 mb-3 mb-md-0 border border-2 rounded-2 border-secondary-subtle", data: { bs_toggle: "tooltip", bs_placement: "bottom" }, title: "Ver mis postulaciones" %>
+                                </li>
+                            <% else %>    
+                                <li class="nav-item w-100">
+                                    <%= link_to "Postulaciones", contest_offers_path, class:"nav-link btn btn-light fs-5 border border-2 rounded-2 border-secondary-subtle", data: { bs_toggle: "tooltip", bs_placement: "bottom" }, data: { bs_toggle: "tooltip", bs_placement: "bottom" }, title: "Ver todas las postulaciones" %>
+                                </li>
+                                <li class="nav-item w-100">
+                                    <%= link_to "Crear oferta", new_offer_path, class:"nav-link btn btn-light fs-5 mb-3 mb-md-0 border border-2 rounded-2 border-secondary-subtle", data: { bs_toggle: "tooltip", bs_placement: "bottom" }, title: "Crear una oferta de cargo" %>
+                                </li>
+                                <li class="nav-item w-100">
+                                    <%= link_to "Registrar", new_user_registration_path,  class: "nav-link btn btn-light fs-5 me-2 custom-btn-30 border border-2 rounded-2 border-secondary-subtle", data: { bs_toggle: "tooltip", bs_placement: "bottom" }, title: "Crear cuenta de usuario" %>
+                                </li>
+                            <% end %>
+                            <li class="nav-item w-100 mt-2">
+                                <%= button_to "Cerrar sesión", destroy_user_session_path, class: "w-100 btn btn-secondary ", method: :delete %>
+                            </li>
+                        </ul>
+                    </div>
+                <% else %>
+                    <%= link_to "Iniciar sesión", new_user_session_path,   class: "btn btn-secondary me-2" %>
+                <% end %>
+ 
+
+        </div>
     </nav>
 

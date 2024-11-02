@@ -42,7 +42,8 @@ class OffersController < ApplicationController
 
     respond_to do |format|
       if @offer.save
-        format.html { redirect_to @offer, notice: "OFERTA DE CARGO CREADA" }
+        flash[:alert] = "OFERTA DE CARGO CREADA"
+        format.html { redirect_to @offer }
         format.json { render :show, status: :created, location: @offer }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -55,7 +56,8 @@ class OffersController < ApplicationController
   def update
     respond_to do |format|
       if @offer.update(offer_params)
-        format.html { redirect_to @offer, notice: "OFERTA DE CARGO ACTUALIZADA" }
+        flash[:alert] = "OFERTA DE CARGO ACTUALIZADA"
+        format.html { redirect_to @offer }
         format.json { render :show, status: :ok, location: @offer }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -69,7 +71,8 @@ class OffersController < ApplicationController
     @offer.destroy!
 
     respond_to do |format|
-      format.html { redirect_to offers_path, status: :see_other, notice: "OFERTA DE CARGO ELIMINADA" }
+      flash[:alert] = "OFERTA DE CARGO ELIMINADA"
+      format.html { redirect_to offers_path }
       format.json { head :no_content }
     end
   end
@@ -82,7 +85,8 @@ class OffersController < ApplicationController
 
     def authorize_owner
       unless current_user&.owner? || current_user&.admin?
-        redirect_to root_path, notice: "NO ESTÁ AUTORIZADO PARA ACCEDER A ESTA PÁGINA"
+        flash[:alert] = "NO ESTÁ AUTORIZADO PARA ACCEDER A ESTA PÁGINA"
+        redirect_to root_path
       end
     end
 

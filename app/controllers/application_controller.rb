@@ -26,7 +26,6 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     if current_user.normal?
       if !current_user.curriculum.present? || !current_user.picture.present?
-        puts "No existe curriculum o foto"
         flash[:alert] = "PARA PODER POSTULAR DEBE INGRESAR CURRÍCULO Y FOTO EN SU PERFIL"
         return edit_user_registration_path
       end
