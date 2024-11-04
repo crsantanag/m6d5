@@ -50,26 +50,26 @@
                             </li>
 
                             <li class="nav-item col-12 col-md-auto ms-2 ms-sm-0">
-                                <%= link_to "Ofertas", offers_path, class:"nav-link btn btn-light ",
+                                <%= link_to "Ofertas", offers_path, class:"ms-2 ms-md-0 nav-link btn btn-light ",
                                     data: { bs_toggle: "tooltip", bs_placement: "bottom" }, title: "Ver las ofertas de trabajo" %>
                             </li>
                             <% if current_user.normal? %>
                                 <li class="nav-item col-12 col-md-auto ms-2 ms-sm-0">
-                                    <%= link_to "Postulaciones ".html_safe + "<span class='top-0 badge rounded-pill bg-danger'> #{@postulations.count} </span>".html_safe, postulations_path, class:"nav-link btn btn-light mb-3 mb-md-0 ", data: { bs_toggle: "tooltip", bs_placement: "bottom" }, title: "Ver mis postulaciones" %>
+                                    <%= link_to "Postulaciones ".html_safe + "<span class='top-0 badge rounded-pill bg-danger'> #{@postulations.count} </span>".html_safe, postulations_path, class:"ms-2 ms-md-0 nav-link btn btn-light mb-3 mb-md-0 ", data: { bs_toggle: "tooltip", bs_placement: "bottom" }, title: "Ver mis postulaciones" %>
                                 </li>
                             <% else %>    
                                 <li class="nav-item col-12 col-md-auto ms-2 ms-sm-0">
-                                    <%= link_to "Postulaciones", contest_offers_path, class:"nav-link btn btn-light ", data: { bs_toggle: "tooltip", bs_placement: "bottom" }, data: { bs_toggle: "tooltip", bs_placement: "bottom" }, title: "Ver todas las postulaciones" %>
+                                    <%= link_to "Postulaciones", contest_offers_path, class:"ms-2 ms-md-0 nav-link btn btn-light ", data: { bs_toggle: "tooltip", bs_placement: "bottom" }, data: { bs_toggle: "tooltip", bs_placement: "bottom" }, title: "Ver todas las postulaciones" %>
                                 </li>
                                 <li class="nav-item col-12 col-md-auto ms-2 ms-sm-0">
-                                    <%= link_to "Crear oferta", new_offer_path, class:"nav-link btn btn-light ", data: { bs_toggle: "tooltip", bs_placement: "bottom" }, title: "Crear una oferta de cargo" %>
+                                    <%= link_to "Crear oferta", new_offer_path, class:"ms-2 ms-md-0 nav-link btn btn-light ", data: { bs_toggle: "tooltip", bs_placement: "bottom" }, title: "Crear una oferta de cargo" %>
                                 </li>
                                 <li class="nav-item col-12 col-md-auto ms-2 ms-sm-0">
-                                    <%= link_to "Registrar", new_user_registration_path,  class: "nav-link btn btn-light custom-btn-30 ", data: { bs_toggle: "tooltip", bs_placement: "bottom" }, title: "Crear cuenta de usuario" %>
+                                    <%= link_to "Registrar", new_user_registration_path,  class: "ms-2 ms-md-0 nav-link btn btn-light custom-btn-30 ", data: { bs_toggle: "tooltip", bs_placement: "bottom" }, title: "Crear cuenta de usuario" %>
                                 </li>
                             <% end %>
                             <li class="nav-item col-12 col-md-auto ms-2 ms-sm-0">
-                                <%= button_to "Cerrar sesión", destroy_user_session_path, class: "w-100 btn btn-secondary", method: :delete %>
+                                <%= button_to "Cerrar sesión", destroy_user_session_path, class: "ms-2 ms-md-0 w-100 btn btn-secondary", method: :delete %>
                             </li>
                         </ul>
                     </div>

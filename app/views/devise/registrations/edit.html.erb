@@ -17,7 +17,7 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "ps-2 col-11 col-md-6 border border-2 border-secondary-subtle rounded", style:"height: 35px" %>
+    <%= f.email_field :email, readonly: true, autocomplete: "email", class: "ps-2 col-11 col-md-6 border border-2 border-secondary-subtle rounded", style:"height: 35px" %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -41,7 +41,7 @@
   <div class="my-2">
     <%= f.label :name, "Nombre", class: "col-6" %>
       <br>
-    <%= f.text_field :name,  placeholder: "Name", required: true, class: "ps-2 col-11 col-md-6 border border-2 border-secondary-subtle rounded", style:"height: 35px" %>
+    <%= f.text_field :name,  autofocus: true, placeholder: "Name", required: true, class: "ps-2 col-11 col-md-6 border border-2 border-secondary-subtle rounded", style:"height: 35px" %>
   </div>
 
   <div class="my-2">
