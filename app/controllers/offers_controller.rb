@@ -80,7 +80,12 @@ class OffersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_offer
-      @offer = Offer.find(params[:id])
+      @offer = Offer.find_by(id: params[:id])
+
+      if !@offer
+        flash[:alert] = "LA OFERTA NO SE ENCONTRÓ O FUE ELIMINADA"
+        redirect_to offers_path
+      end
     end
 
     def authorize_owner

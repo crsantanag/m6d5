@@ -115,7 +115,12 @@ class PostulationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_postulation
-      @postulation = Postulation.find(params[:id])         # La postulación debe existir para [ show edit update destroy ]
+      @postulation = Postulation.find_by(id: params[:id])
+
+      if !@postulation
+        flash[:alert] = "LA POSTULACIÓN NO SE ENCONTRÓ O FUE ELIMINADA"
+        redirect_to offers_path
+      end
     end
 
     def set_offer
