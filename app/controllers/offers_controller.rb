@@ -1,4 +1,6 @@
 class OffersController < ApplicationController
+  skip_before_action :verify_authenticity_token, if: -> { request.format.json? }
+
   before_action :authenticate_user!
   before_action :set_offer, only: %i[ show edit update destroy ]
   before_action :authorize_owner, only: [ :contest ]
@@ -23,6 +25,7 @@ class OffersController < ApplicationController
 
   # GET /offers/1 or /offers/1.json
   def show
+    @offer = Offer.find(params[:id])
     @postulation = Postulation.new
   end
 
@@ -80,6 +83,7 @@ class OffersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_offer
+      puts "Set_offer - Offer"
       @offer = Offer.find_by(id: params[:id])
 
       if !@offer
@@ -89,6 +93,7 @@ class OffersController < ApplicationController
     end
 
     def authorize_owner
+      puts "Authorize Owner - Offer"
       unless current_user&.owner? || current_user&.admin?
         flash[:alert] = "NO ESTÁ AUTORIZADO PARA ACCEDER A ESTA PÁGINA"
         redirect_to root_path
@@ -97,6 +102,7 @@ class OffersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def offer_params
+      puts "Offer params - Offer"
       params.require(:offer).permit(:title, :description, :active, :limit)
     end
 end

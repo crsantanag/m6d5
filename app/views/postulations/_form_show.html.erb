@@ -1,17 +1,4 @@
-<%= form_with(model: @postulation) do |form| %>
-
-  <% if @postulation.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(postulation.errors.count, "Error(es).") %> No es posible crear postulación debido a:</h2>
-      <ul>
-        <% @postulation.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <%= form.hidden_field :offer_id, value: offer.id %>
+<%= form_with(model: [offer, postulation], url: offer_postulations_path(offer), method: :post, local: true) do |form| %>
 
   <div class="my-2 w-100 ">
     <div class="field my-2 ">

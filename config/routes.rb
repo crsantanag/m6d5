@@ -5,8 +5,11 @@ Rails.application.routes.draw do
   get "/contests",    to: "offers#contest",       as: "contest_offers"
   get "/pages/exito", to: "pages#exito",          as: "pages_exito"
 
-  resources :postulations
-  resources :offers
+  resources :postulations, except: [ :create ]
+
+  resources :offers do
+    resources :postulations, only: [ :create ]
+  end
 
   devise_for :users, controllers: {
     sessions: "users/sessions",

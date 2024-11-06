@@ -11,7 +11,7 @@
 
     <% if @postulation.errors.any? %>
       <div id="error_explanation" class="mx-2"  style="color: red">
-        <h2><%= @postulation.errors.count %> error(es). No es posible realizar postulación</h2>
+        <h2><%= @postulation.errors.count %> error. No es posible realizar la postulación debido a: </h2>
         <ul>
           <% @postulation.errors.full_messages.each do |message| %>
             <li><%= message %></li>
@@ -81,7 +81,9 @@
       <% else %>
         <br>
           <% if current_user.curriculum? && current_user.picture.attached? %>
-            <%= render "postulations/form_show", postulation: @postulation, offer: @offer %>
+          
+            <%= render 'postulations/form_show', offer: @offer, postulation: @postulation %>
+
           <% else %>
             <p class="bg-danger text-white text-center py-2"><strong>PARA POSTULAR DEBE INGRESAR CURRÍCULO VITAE Y FOTO EN SU PERFIL</strong></p>
           <% end %>

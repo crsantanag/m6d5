@@ -4,5 +4,5 @@ class Postulation < ApplicationRecord
 
   validates :message,
   presence: { message: "- no puede estar vacío" },
-  length: { in: 1..2000, message: "- debe tener entre 2 y 2000 caracteres" }
+  length: { in: 2..2000, message: "- debe tener entre 2 y 2000 caracteres" }
 end

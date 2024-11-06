@@ -33,7 +33,14 @@ Offer.create!(
   limit: Date.tomorrow,
   user_id: User.last.id)
 
-puts "Se han creado 2 ofertas de cargos"
+  Offer.create!(
+  title: "Gerente de administración y finanzas",
+  description: "Gestionar la adquisición de los diversos requerimientos de bienes y servicios de la institución, prestando apoyo a las labores propias de Servicios Generales, gestionando la disponibilidad de los bienes y servicios requeridos por la institución..",
+  active: true,
+  limit: Date.tomorrow,
+  user_id: User.last.id)
+
+puts "Se han creado 3 ofertas de cargos"
 
 User.create!(
   email: "steve@miempresa.cl",

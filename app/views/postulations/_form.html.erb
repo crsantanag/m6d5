@@ -23,7 +23,7 @@
     <% if controller_name == "postulations" %>
       <% if action_name == "new" %>
         <%= form.submit "Postular ** Nunca por aquí **", class: "btn btn-primary my-0", style: "width:100px" %>
-      <% elsif action_name == "edit" %>
+      <% elsif action_name == "edit" || action_name == "update"  %>
         <%= form.submit "Actualizar", class: "btn btn-primary my-0", style: "width:100px" %>
       <% end %>
     <% end %>
