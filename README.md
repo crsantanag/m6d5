@@ -17,9 +17,8 @@ OBS:
 3.  Cada vez que el usuario ingrese a la aplicación con su email y password, y mientras no ingrese su curriculum y foto, se le mostrará un mensaje solicitando estos datos. Para hacer esta acción, se debe hacer click sobre su nombre en la barra de navegación y lo redijirá a la vista de modificación.
 4.  Sólo el usuario owner (o admin) puede crear ofertas de cargos, controlando la aplicación -en el navbar y en el controlador respectivo- las opciones autorizadas. Al crear una oferta se piden, entre otros campos:
 
-
-     - active: permite dejar activa o inactiva una oferta de cargo. Esto es útil para "bajar u ocultar" momentáneamente una oferta de cargo
-     - fecha límite: permite indicar la fecha límite para postular a la oferta de cargo.
+    - active: permite dejar activa o inactiva una oferta de cargo. Esto es útil para "bajar u ocultar" momentáneamente una oferta de cargo
+    - fecha límite: permite indicar la fecha límite para postular a la oferta de cargo.
 
 5.  Para postular a una oferta de cargo el usuario deberá -previamente- subir a su perfil su currículo y su foto.
 6.  Al postular es obligación indicar el motivo de dicha postulación. Una vez realizada esta acción, la postulación quedará con un indicador color rojo que le indica que aún no es vista por el owner (o admin). Cuando la postulación sea vista por el owner, el indicador pasará a verde. Lo mismo ocurre para la vista del owner (o admin).
@@ -82,15 +81,17 @@ Sigue estos pasos para ejecutar el proyecto localmente:
 
 ## Ejecutando las pruebas
 
-Levanta el servidor y prueba la aplición.  
+Levanta el servidor y prueba la aplicación.  
 root está en /
 
 Este proyecto cuenta con pruebas automatizadas para el proceso de postulación. Revisar test/models/postulation_test.rb y test/controllers/postulations_controller_test.rb
 
-Para ejecutar la prueba en el modelo el comando es: rails test test/models/postulation_test.rb -n test_should_create_a_postulation  
+Para ejecutar la prueba en el modelo el comando es: rails test test/models/postulation_test.rb -n test_should_create_a_postulation
+
 ![Test](test1.jpg)
 
-Para ejecutar la prueba en el controlador el comando es: rails test test/controllers/postulations_controller_test.rb -n should_create_postulation  
+Para ejecutar la prueba en el controlador el comando es: rails test test/controllers/postulations_controller_test.rb -n should_create_postulation
+
 ![Test](test2.jpg)
 
 Las otras puebas se pueden implementar, o bien, hacerlas manualmente. Hay datos para pruebas en seeds.rb
