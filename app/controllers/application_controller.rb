@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
 
   def authorize_request(kind = nil)
     unless kind.include?(current_user.role)
-      redirect_to offers_path, notice: "No está autorizado para realizar esta acción"
+      flash[:alert] = "NO ESTÁ AUTORIZADO PARA REALIZAR ESTA ACCION"
+      redirect_to root_path
     end
   end
 

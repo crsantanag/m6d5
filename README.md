@@ -90,7 +90,7 @@ Para ejecutar la prueba en el modelo el comando es: rails test test/models/postu
 
 ![Test](test1.jpg)
 
-Para ejecutar la prueba en el controlador el comando es: rails test test/controllers/postulations_controller_test.rb -n should_create_a_postulation
+Para ejecutar la prueba en el controlador el comando es: rails test test/controllers/postulations_controller_test.rb -n should_create_a_postulation. Este test, además de verificar el proceso de postulación, verifica que un usuario no pueda postular más de 2 veces al mismo cargo.
 
 ![Test](test2.jpg)
 

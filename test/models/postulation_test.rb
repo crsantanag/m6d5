@@ -2,35 +2,20 @@ require "test_helper"
 include ActionDispatch::TestProcess
 
 class PostulationTest < ActiveSupport::TestCase
-  setup do
-    @owner = User.create!(email: "owner@example.com",
-      password: "123456",
-      name: "Esteban",
-      phone: 987654321,
-      curriculum: "CV Esteban",
-      role: "owner")
-    imagen = fixture_file_upload("esteban_picture.jpg", "image/jpeg")
-    @owner.image.attach(imagen)
+  def setup
+    @owner = users(:owner)        # Carga el owner desde los fixtures
+    @user  = users(:juan)         # Carga el usuario desde los fixtures
+    sign_in @user                 # Hace sign_in del usuario cargado
+    @offer = offers(:first_offer) # Carga una oferta desde los fixtures
 
-    @user  = User.create!(email: "user@example.com",
-      password: "123456",
-      name: "Carlos",
-      phone: 987654321,
-      curriculum: "CV Carlos",
-      role: "normal")
-    imagen = fixture_file_upload("juan_picture.jpg", "image/jpeg")
-    @user.image.attach(imagen)
-
-    @offer = Offer.create!(title: "Desarrollador de software",
-      description: "Multifacético",
-      active: true,
-      limit: Date.tomorrow,
-      user: @owner)
+    # Limpio las postulaciones previas para asegurar un estado limpio
+    Postulation.where(user: @user, offer: @offer).destroy_all
   end
 
   test "should create a postulation" do
-    # Iniciar sesión como un usuario
-    sign_in @user
+    # Asigno imagenes de prueba
+    @owner.image.attach(fixture_file_upload("esteban_picture.jpg", "image/jpeg")) # No es necesario, pero igual lo ahacemos
+    @user.image.attach(fixture_file_upload("juan_picture.jpg", "image/jpeg"))     # El user necesita una imagen para poder postular
 
     # Crear la postulación para el usuario
     postulation = Postulation.new(user: @user, offer: @offer, message: "Estoy interesado en el puesto")

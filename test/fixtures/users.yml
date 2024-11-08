@@ -4,14 +4,13 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-esteban:
+owner:
   email: "esteban@example.com"
   encrypted_password: <%= Devise::Encryptor.digest(User, "123456") %>
   phone: 987654321
   name: "Esteban"
   phone: 987654321
-  curriculum: "Mi CV"
-  image: esteban_picture_attachment
+  curriculum: "CV Esteban"
   role: "owner"
 
 juan:
@@ -20,6 +19,5 @@ juan:
   phone: 987654321
   name: "Juan"
   phone: 987654321
-  curriculum: "Mi CV"
-  image: juan_picture_attachment
+  curriculum: "CV Juan"
   role: "normal"

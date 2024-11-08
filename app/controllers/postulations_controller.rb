@@ -24,7 +24,7 @@ class PostulationsController < ApplicationController
     if current_user.owner?
       @postulation.saw = true
       if !@postulation.save
-        flash[:notice] = "Error interno - No es posible modificar VISTO"
+        flash[:notice] = "Error interno - DB"
       end
     end
   end
@@ -136,7 +136,6 @@ class PostulationsController < ApplicationController
     end
 
     def set_offer
-      offer_id = params[:offer_id]
       @offer = Offer.find(params[:offer_id]) # La oferta debe existir para postular
       if !@offer
         flash[:alert] = "LA OFERTA NO SE ENCONTRÓ O FUE ELIMINADA"

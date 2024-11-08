@@ -4,16 +4,16 @@ first_offer:
   title: "Oferta de prueba 1"
   description: "Descripción de la oferta de prueba 1"
   limit: <%= Date.tomorrow %>
-  user: esteban # Cambiar este valor según el ID de un usuario válido en el archivo users.yml
+  user: owner # Cambiar este valor según el ID de un usuario válido en el archivo users.yml
 
 second_offer:
   title: "Oferta de prueba 2"
   description: "Descripción de la oferta de prueba 2"
   limit: <%= Date.tomorrow %>
-  user: esteban # Cambiar este valor según el ID de un usuario válido en el archivo users.yml
+  user: owner # Cambiar este valor según el ID de un usuario válido en el archivo users.yml
 
 third_offer:
   title: "Oferta de prueba 3"
   description: "Descripción de la oferta de prueba 3"
   limit: <%= Date.tomorrow %>
-  user: esteban # Cambiar este valor según el ID de un usuario válido en el archivo users.yml
+  user: owner # Cambiar este valor según el ID de un usuario válido en el archivo users.yml
