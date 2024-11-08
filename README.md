@@ -90,7 +90,7 @@ Para ejecutar la prueba en el modelo el comando es: rails test test/models/postu
 
 ![Test](test1.jpg)
 
-Para ejecutar la prueba en el controlador el comando es: rails test test/controllers/postulations_controller_test.rb -n should_create_postulation
+Para ejecutar la prueba en el controlador el comando es: rails test test/controllers/postulations_controller_test.rb -n should_create_a_postulation
 
 ![Test](test2.jpg)
 

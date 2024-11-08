@@ -28,7 +28,7 @@ class PostulationsControllerTest < ActionDispatch::IntegrationTest
       user: @owner)
   end
 
-  test "should create postulation" do
+  test "should create a postulation" do
     # Iniciar sesión como un usuario
     sign_in @user
 

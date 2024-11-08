@@ -33,13 +33,13 @@ class PostulationTest < ActiveSupport::TestCase
     sign_in @user
 
     # Crear la postulación para el usuario
-    postulation = Postulation.new(user: @user, offer: @offer, message: "Estoy interesado en el puesto.")
+    postulation = Postulation.new(user: @user, offer: @offer, message: "Estoy interesado en el puesto")
     puts
 
     assert postulation.save, "La postulación debería guardarse correctamente"
 
     # Verificar que la postulación se asocie correctamente con el usuario y la oferta
-    assert_equal @user, postulation.user
+    assert_equal @user,  postulation.user
     assert_equal @offer, postulation.offer
   end
 end
