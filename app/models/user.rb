@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :offers
   has_many :postulations, dependent: :destroy
 
-  has_one_attached :picture
+  has_one_attached :image
 
   enum :role, [ :normal, :owner, :admin ]
 

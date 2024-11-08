@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  message: "Postulación 1"
+  saw: false
+  user: juan
+  offer: first_offer
+
+two:
+  message: "Postulación 2"
+  saw: false
+  user: juan
+  offer: second_offer
+
+three:
+  message: "Postulación 3"
+  saw: false
+  user: juan
+  offer: third_offer

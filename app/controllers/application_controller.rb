@@ -19,13 +19,13 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [ :name, :phone, :role, :curriculum, :picture ])
-    devise_parameter_sanitizer.permit(:account_update, keys: [ :name, :phone, :role, :curriculum, :picture ])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [ :name, :phone, :role, :curriculum, :image ])
+    devise_parameter_sanitizer.permit(:account_update, keys: [ :name, :phone, :role, :curriculum, :image ])
   end
 
   def after_sign_in_path_for(resource)
     if current_user.normal?
-      if !current_user.curriculum.present? || !current_user.picture.present?
+      if !current_user.curriculum.present? || !current_user.image.present?
         flash[:alert] = "PARA PODER POSTULAR DEBE INGRESAR CURRÍCULO Y FOTO EN SU PERFIL"
         return edit_user_registration_path
       end

@@ -57,16 +57,16 @@
   <div class="d-md-flex col-11 col-md-6 my-2 align-items-start border border-2 border-secondary-subtle rounded">
 
       <div class="my-2 ms-2"> 
-          <% if current_user.picture.attached? %>
-              <%= image_tag current_user.picture, class: "img-fluid border border-1 border-secondary-subtle rounded", style: "max-width: 70px; max-height: 70px; width: 100%; height: auto;" if current_user.picture.attached? %>
+          <% if current_user.image.attached? %>
+              <%= image_tag current_user.image, class: "img-fluid border border-1 border-secondary-subtle rounded", style: "max-width: 70px; max-height: 70px; width: 100%; height: auto;" if current_user.image.attached? %>
           <% end %>
       </div>
 
       <div class="ms-md-3 my-2">
-        <%= f.label :picture, "Foto - Relación 1:1 - Tamaño máx 1 Mb" %>
+        <%= f.label :image, "Foto - Relación 1:1 - Tamaño máx 1 Mb" %>
         <br>
         <div class="d-flex align-items-center">
-          <%= f.file_field :picture, class: "ps-2 py-1 col-12 border border-2 border-secondary-subtle rounded", style:"height: 40px" %>
+          <%= f.file_field :image, class: "ps-2 py-1 col-12 border border-2 border-secondary-subtle rounded", style:"height: 40px" %>
         </div>
       </div>
       <br>

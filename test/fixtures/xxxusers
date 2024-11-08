@@ -6,12 +6,20 @@
 #
 esteban:
   email: "esteban@example.com"
-  encrypted_password: <%= Devise::Encryptor.digest(User, '123456') %>
-  curriculum: "Mi CV"
+  encrypted_password: <%= Devise::Encryptor.digest(User, "123456") %>
   phone: 987654321
   name: "Esteban"
   phone: 987654321
   curriculum: "Mi CV"
+  image: esteban_picture_attachment
   role: "owner"
 
-
+juan:
+  email: "juan@example.com"
+  encrypted_password: <%= Devise::Encryptor.digest(User, "123456") %>
+  phone: 987654321
+  name: "Juan"
+  phone: 987654321
+  curriculum: "Mi CV"
+  image: juan_picture_attachment
+  role: "normal"

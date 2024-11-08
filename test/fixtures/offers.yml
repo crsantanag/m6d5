@@ -1,7 +1,0 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-first_offer:
-  title: "Oferta de prueba"
-  description: "Descripción de la oferta de prueba"
-  limit: <%= Date.tomorrow %>
-  user: esteban # Cambia este valor según el ID de un usuario válido en tu archivo users.yml

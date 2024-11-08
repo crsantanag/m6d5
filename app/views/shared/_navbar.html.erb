@@ -18,9 +18,9 @@
                         <span class="text-dark mx-2"><%= link_to current_user.email, edit_user_registration_path(@user), class: "ms-2 me-2 btn btn-primary" %> </span> 
                     <% end %>
 
-                    <% if current_user.picture.attached? %>
+                    <% if current_user.image.attached? %>
                         <div class="d-flex justify-content-center d-none d-lg-block">
-                            <%= image_tag current_user.picture, class: "img", style: "width: 70px; height: 70px; " %>
+                            <%= image_tag current_user.image, class: "img", style: "width: 70px; height: 70px; " %>
                         </div>
                     <% end %>
 

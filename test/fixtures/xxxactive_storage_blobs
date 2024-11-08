@@ -1,0 +1,17 @@
+esteban_picture:
+  id: 1
+  key: "esteban_picture_key" # identificador único para el archivo
+  filename: "esteban_picture.jpg"
+  content_type: "image/jpeg"
+  metadata: {}
+  byte_size: 39536 # tamaño del archivo en bytes
+  checksum: Digest::MD5.file("test/fixtures/files/esteban_picture.jpg").base64digest
+
+juan_picture:
+  id: 2
+  key: "juan_picture_key"
+  filename: "juan_picture.jpg"
+  content_type: "image/jpeg"
+  metadata: {}
+  byte_size: 90666
+  checksum: Digest::MD5.file("test/fixtures/files/juan_picture.jpg").base64digest

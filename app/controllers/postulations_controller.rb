@@ -40,21 +40,21 @@ class PostulationsController < ApplicationController
 
   # POST /postulations or /postulations.json
   def create
-    puts "Create - Postulation"
     # @postulation = Postulation.new(postulation_params)
     @postulation = @offer.postulations.build(postulation_params)
 
     if !user_signed_in?
+      puts "DEBE INICIAR SESIÓN PARA POSTULAR"
       flash[:alert] = "DEBE INICIAR SESIÓN PARA POSTULAR"
       redirect_to root_path
       return
-    elsif !current_user.curriculum.present? || !current_user.picture.attached?
+    elsif !current_user.curriculum.present? || !current_user.image.attached?
+      puts "DEBE INGRESAR SU CURRICULUM Y FOTO PARA POSTULAR"
       flash[:alert] = "DEBE INGRESAR SU CURRICULUM Y FOTO PARA POSTULAR"
       redirect_to offers_path
       return
     elsif Postulation.exists?(user_id: current_user.id, offer_id: @offer.id)
-      puts current_user.id
-      puts @offer.id
+      puts "NO PUEDE POSTULAR AL MISMO CARGO MÁS DE 1 VEZ"
       flash[:alert] = "NO PUEDE POSTULAR AL MISMO CARGO MÁS DE 1 VEZ"
       redirect_to offers_path
       return
@@ -64,6 +64,7 @@ class PostulationsController < ApplicationController
       @postulation.user_id = current_user.id
       @postulation.offer_id = @offer.id
     else
+      puts "DEBE INICIAR SESIÓN PARA POSTULAR"
       flash[:alert] = "DEBE INICIAR SESIÓN PARA POSTULAR" # o bien, se eliminó la oferta de cargo
       redirect_to root_path
       return
@@ -71,10 +72,12 @@ class PostulationsController < ApplicationController
 
     respond_to do |format|
       if @postulation.save
+        puts "POSTULACIÓN REALIZADA"
         flash[:alert] = "POSTULACIÓN REALIZADA"
         format.html { redirect_to postulations_path }
         format.json { render :show, status: :created, location: @postulation }
       else
+        puts "ERROR!"
         format.html { render "offers/show", status: :unprocessable_entity }
         format.json { render json: @postulations.errors, status: :unprocessable_entity }
         logger.error @postulation.errors.full_messages
@@ -124,7 +127,6 @@ class PostulationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_postulation
-      puts "Set postulation - Postulation"
       @postulation = Postulation.find_by(id: params[:id])
 
       if !@postulation
@@ -134,9 +136,7 @@ class PostulationsController < ApplicationController
     end
 
     def set_offer
-      puts "Set_offer - Postulation"
       offer_id = params[:offer_id]
-      puts "Offer ID: #{offer_id}"
       @offer = Offer.find(params[:offer_id]) # La oferta debe existir para postular
       if !@offer
         flash[:alert] = "LA OFERTA NO SE ENCONTRÓ O FUE ELIMINADA"
@@ -145,7 +145,6 @@ class PostulationsController < ApplicationController
     end
 
     def authorize_owner
-      puts "Authorize Owner - Postulation"
       unless current_user&.owner? || current_user&.admin?
         flash[:alert] = "USUARIO NO AUTORIZADO"
         redirect_to root_path
@@ -154,7 +153,6 @@ class PostulationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def postulation_params
-      puts "Postulation Params - Postulation"
       params.require(:postulation).permit(:message, :saw, :user_id, :offer_id)
     end
 end

@@ -80,7 +80,7 @@
       
       <% else %>
         <br>
-          <% if current_user.curriculum? && current_user.picture.attached? %>
+          <% if current_user.curriculum? && current_user.image.attached? %>
           
             <%= render 'postulations/form_show', offer: @offer, postulation: @postulation %>
 

@@ -15,7 +15,7 @@ User.create!(
   phone: 987654321,
   role: 1,
   curriculum: "Mi CV",
-  picture: File.open(Rails.root.join("db/seeds/esteban.jpg")))
+  image: File.open(Rails.root.join("db/seeds/esteban.jpg")))
 
 puts "La cuenta de Esteban (owner) ha sido creada: esteba@miempresa.cl con privilegios para crear usuarios y ofertas de cargos"
 
@@ -49,7 +49,7 @@ User.create!(
   phone: 987654321,
   role: 0,
   curriculum: "Mi CV",
-  picture: File.open(Rails.root.join("db/seeds/user1.jpg")))
+  image: File.open(Rails.root.join("db/seeds/user1.jpg")))
 
 User.create!(
   email: "linda@miempresa.cl",
@@ -58,7 +58,7 @@ User.create!(
   phone: 987654321,
   role: 0,
   curriculum: "Mi CV",
-  picture: File.open(Rails.root.join("db/seeds/user2.jpg")))
+  image: File.open(Rails.root.join("db/seeds/user2.jpg")))
 
 User.create!(
   email: "juan@miempresa.cl",
@@ -67,6 +67,6 @@ User.create!(
   phone: 987654321,
   role: 0,
   curriculum: "Mi CV",
-  picture: File.open(Rails.root.join("db/seeds/user3.jpg")))
+  image: File.open(Rails.root.join("db/seeds/user3.jpg")))
 
 puts "Se crearon las cuentas de Steve, Linda y Juan con el email: nombre@miempresa.cl, paswword: 123456 y sin postulaciones"

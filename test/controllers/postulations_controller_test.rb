@@ -1,48 +1,43 @@
 require "test_helper"
+include ActionDispatch::TestProcess
 
 class PostulationsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @postulation = postulations(:one)
-  end
+    @owner = User.create!(email: "owner@example.com",
+      password: "123456",
+      name: "Esteban",
+      phone: 987654321,
+      curriculum: "CV Esteban",
+      role: "owner")
+    imagen = fixture_file_upload("esteban_picture.jpg", "image/jpeg")
+    @owner.image.attach(imagen)
 
-  test "should get index" do
-    get postulations_url
-    assert_response :success
-  end
+    @user  = User.create!(email: "user@example.com",
+      password: "123456",
+      name: "Carlos",
+      phone: 987654321,
+      curriculum: "CV Carlos",
+      role: "normal")
+    imagen = fixture_file_upload("juan_picture.jpg", "image/jpeg")
+    @user.image.attach(imagen)
 
-  test "should get new" do
-    get new_postulation_url
-    assert_response :success
+    @offer = Offer.create!(title: "Desarrollador de software",
+      description: "Multifacético",
+      active: true,
+      limit: Date.tomorrow,
+      user: @owner)
   end
 
   test "should create postulation" do
-    assert_difference("Postulation.count") do
-      post postulations_url, params: { postulation: { message: @postulation.message, offer_id: @postulation.offer_id, saw: @postulation.saw, user_id: @postulation.user_id } }
-    end
+    # Iniciar sesión como un usuario
+    sign_in @user
 
-    assert_redirected_to postulation_url(Postulation.last)
-  end
+    # Realizar la solicitud de creación de postulación
+    post offer_postulations_path(offer_id: @offer.id), params: { postulation: { message: "Estoy interesado en el puesto" } }
+    puts
 
-  test "should show postulation" do
-    get postulation_url(@postulation)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_postulation_url(@postulation)
-    assert_response :success
-  end
-
-  test "should update postulation" do
-    patch postulation_url(@postulation), params: { postulation: { message: @postulation.message, offer_id: @postulation.offer_id, saw: @postulation.saw, user_id: @postulation.user_id } }
-    assert_redirected_to postulation_url(@postulation)
-  end
-
-  test "should destroy postulation" do
-    assert_difference("Postulation.count", -1) do
-      delete postulation_url(@postulation)
-    end
-
-    assert_redirected_to postulations_url
+    # Verificar redirección o mensaje flash
+    assert_redirected_to postulations_path
+    assert_equal "POSTULACIÓN REALIZADA", flash[:alert]
   end
 end

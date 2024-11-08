@@ -16,8 +16,8 @@
 
       <div class="d-flex align-items-start ms-2 mb-2">
         <div class="ms-2 mt-1"> 
-            <% if @postulation.user.picture.attached? %>
-                <%= image_tag @postulation.user.picture, class: "img-fluid rounded-circle", style: "max-width: 50px; max-height: 50px; width: 100%; height: auto;" if @postulation.user.picture.attached? %>
+            <% if @postulation.user.image.attached? %>
+                <%= image_tag @postulation.user.image, class: "img-fluid rounded-circle", style: "max-width: 50px; max-height: 50px; width: 100%; height: auto;" if @postulation.user.image.attached? %>
             <% end %>
         </div>      
         <div class="flex-grow-1 ms-2 mb-2"> 
