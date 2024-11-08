@@ -2,7 +2,7 @@ require "test_helper"
 
 class OffersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @offer = offers(:one)
+    @offer = offers(:first_offer)
   end
 
   test "should get index" do
