@@ -10,6 +10,7 @@ document.addEventListener("turbo:load", function() {
     return new bootstrap.Tooltip(tooltipTriggerEl);
   });
 
+  // En caso de usar dropdown lo resetea
   // Resetear dropdown después de seleccionar una opción
   const dropdownItems = document.querySelectorAll('.dropdown-item');
   dropdownItems.forEach(item => {
